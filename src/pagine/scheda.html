@@ -1,0 +1,30 @@
+titolo: Scheda di adesione dei produttori | Filo Corto
+desc: La scheda di adesione alla rete Filo Corto per i produttori del Lazio.
+menu: produttori.html
+noindex: si
+---
+<div class="wrap"><div class="capo"><p class="briciole"><a href="./">Filo Corto</a> / <a href="produttori.html">Produttori</a> / Scheda di adesione</p><h1>Scheda di adesione</h1><p class="grande">Dieci minuti per dirci cosa produci e come lavori. Con queste informazioni prepariamo il listino da presentare alle cucine. Aderire è gratuito e non ti impegna.</p></div></div>
+<section class="sez bianca" style="border-top:0;padding-top:0"><div class="wrap"><div class="modulo" style="max-width:860px"><form class="form" action="invia.php" method="post">
+<input type="hidden" name="tipo" value="scheda"><div class="hp" aria-hidden="true"><label>Lascia vuoto<input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>
+<h3 class="full">1. L'azienda</h3>
+<label>Nome dell'azienda<input type="text" name="azienda" required maxlength="120" autocomplete="organization"></label>
+<label>Referente<input type="text" name="referente" required maxlength="120" autocomplete="name"></label>
+<label>Email<input type="email" name="email" required maxlength="160" autocomplete="email"></label>
+<label>Comune e provincia<input type="text" name="comune" required maxlength="120"></label>
+<label class="full">L'attività è registrata presso l'autorità sanitaria?<select name="registrazione"><option>Sì</option><option>No</option><option>Non lo so</option></select></label>
+<h3 class="full">2. Prodotti e prezzi</h3>
+<label class="full">Prodotti, formati e prezzi senza IVA<textarea name="prodotti" rows="6" required maxlength="3000" placeholder="Un prodotto per riga. Es. Pecorino stagionato 6 mesi, forma da 2 kg, 00,00 € al kg"></textarea></label>
+<label>Ordine minimo<input type="text" name="ordine_minimo" maxlength="120" placeholder="Es. 1 forma, 1 cartone"></label>
+<label>Fino a quando valgono i prezzi<input type="text" name="validita" maxlength="120" placeholder="Es. fino a giugno"></label>
+<h3 class="full">3. Consegna e disponibilità</h3>
+<label>Giorni in cui puoi consegnare<input type="text" name="giorni" required maxlength="160" placeholder="Es. martedì e venerdì mattina"></label>
+<label>Tempo tra ordine e consegna<input type="text" name="tempi" maxlength="120" placeholder="Es. ordine entro le 12, consegna il giorno dopo"></label>
+<label class="full">Come consegni oggi<select name="consegna"><option>Consegno io, con mezzo mio</option><option>Uso un corriere</option><option>Vendo solo in azienda o al mercato</option></select></label>
+<label>Quantità che garantisci ogni settimana<input type="text" name="quantita" required maxlength="200" placeholder="Es. 10 forme, 20 latte"></label>
+<label>Mesi in cui il prodotto c'è<input type="text" name="mesi" maxlength="160" placeholder="Es. tutto l'anno, oppure da ottobre a maggio"></label>
+<label class="full">Altro che vuoi dirci<textarea name="note" rows="3" maxlength="1500"></textarea></label>
+<h3 class="full">4. Patti chiari</h3>
+<label class="full check"><input type="checkbox" name="patti" value="si" required><span>Ho capito che aderire è gratuito, non mi impegna e non promette vendite; che il produttore fattura direttamente alla cucina; che il margine di Filo Corto mi sarà comunicato per iscritto prima di qualsiasi ordine; e che prima di entrare nel listino è previsto un check-up in azienda.</span></label>
+<label class="full check"><input type="checkbox" name="consenso" value="si" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a>.</span></label>
+<div class="full"><button type="submit" class="btn verde">Invia la scheda →</button></div>
+</form></div></div></section>
