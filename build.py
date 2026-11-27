@@ -4,6 +4,8 @@
 Uso: python3 build.py
 - src/guide/<slug>.html  -> site/guide/<slug>.html (+ indice guide e sitemap)
 - src/pagine/<nome>.html -> site/<nome>.html
+- src/produttori/<slug>.html -> site/produttori/<slug>.html (+ pagina «I produttori della rete», solo se ce n'è almeno uno)
+  Si pubblica un produttore SOLO dopo scheda di adesione, check-up e consenso scritto alla pubblicazione (vedi README).
 Ogni file in src/ comincia con righe "chiave: valore", poi una riga "---", poi il corpo HTML.
 La cartella site/ viene copiata sopra public_html dal server (vedi README).
 """
@@ -11,7 +13,7 @@ import json, pathlib, datetime
 
 RADICE = pathlib.Path(__file__).parent
 URL = 'https://ilfilocorto.it/'
-CSS_V = '3'
+CSS_V = '4'
 
 # Guide pubblicate prima di questo sistema: i file restano sul server, qui servono per indice e sitemap.
 STORICHE = [
@@ -81,6 +83,49 @@ def voce(slug, h1, breve):
     return f'<a href="{slug}.html"><b>{h1}</b><span>{breve}</span><i>→</i></a>'
 
 
+# ---------- Pagine dei produttori della rete ----------
+# Intestazione di src/produttori/<slug>.html (vedi esempi/produttore-modello.html):
+# nome, categoria (es. Olio extravergine), zona (es. Sabina, provincia di Rieti), comune,
+# prodotti (separati da ;), stagione, consegne, certificazioni (solo con certificato, altrimenti vuoto),
+# foto (nomi dei file in site/produttori/foto/, separati da ;), breve, desc, consenso (data del consenso scritto).
+
+def produttori():
+    elenco = sorted((leggi(p) for p in (RADICE / 'src/produttori').glob('*.html')), key=lambda d: d['nome'].lower()) if (RADICE / 'src/produttori').exists() else []
+    cartella = RADICE / 'site/produttori'
+    for d in elenco:
+        if not d.get('consenso'):
+            raise SystemExit(f'Manca la data del consenso scritto per {d["slug"]}: la pagina non si pubblica.')
+        cartella.mkdir(parents=True, exist_ok=True)
+        url = URL + 'produttori/' + d['slug'] + '.html'
+        lista = [x.strip() for x in d.get('prodotti', '').split(';') if x.strip()]
+        foto = [x.strip() for x in d.get('foto', '').split(';') if x.strip()]
+        schemi = [{'@context': 'https://schema.org', '@type': 'LocalBusiness', 'name': d['nome'], 'description': d['desc'], 'url': url,
+                   'address': {'@type': 'PostalAddress', 'addressLocality': d.get('comune', ''), 'addressRegion': 'Lazio', 'addressCountry': 'IT'},
+                   'areaServed': 'Lazio', 'makesOffer': [{'@type': 'Offer', 'itemOffered': {'@type': 'Product', 'name': x}} for x in lista],
+                   **({'image': [URL + 'produttori/foto/' + f for f in foto]} if foto else {})},
+                  {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Filo Corto', 'item': URL}, {'@type': 'ListItem', 'position': 2, 'name': 'I produttori della rete', 'item': URL + 'produttori/'}, {'@type': 'ListItem', 'position': 3, 'name': d['nome'], 'item': url}]}]
+        fatti = [('Zona', d.get('zona', '')), ('Prodotti', ', '.join(lista)), ('Stagione', d.get('stagione', '')), ('Consegne', d.get('consegne', '')), ('Certificazioni', d.get('certificazioni', ''))]
+        scheda = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in fatti if v)
+        galleria = ('<div class="foto-p">' + ''.join(f'<img src="foto/{f}" alt="{d["nome"]}: foto {i + 1}" loading="lazy">' for i, f in enumerate(foto)) + '</div>') if foto else ''
+        corpo = (f'<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / <a href="./">I produttori della rete</a></p>'
+                 f'<p class="occhiello">{d.get("categoria", "")} · {d.get("zona", "")}</p><h1>{d["nome"]}</h1><p class="grande">{d["breve"]}</p></div></div><div class="filo"></div>'
+                 f'<section class="sez bianca" style="border-top:0"><div class="wrap due"><article class="prosa">{d["corpo"]}</article>'
+                 f'<aside><dl class="scheda-p">{scheda}</dl>'
+                 '<p class="piccolo">I prezzi per la ristorazione si chiedono con il modulo: rispondiamo per email con listino, ordine minimo e giorni di consegna.</p>'
+                 '<a class="btn miele" href="../cucine.html">Chiedi un campione →</a></aside></div>'
+                 f'<div class="wrap">{galleria}<div class="nota"><p><strong>Nota.</strong> Le informazioni su questa pagina sono fornite dal produttore e pubblicate con il suo consenso. '
+                 'Filo Corto non vende al posto del produttore: mette in contatto, e il produttore fattura direttamente alla cucina.</p></div></div></section>' + cta('../'))
+        (cartella / (d['slug'] + '.html')).write_text(pagina('produttori/' + d['slug'] + '.html', f'{d["nome"]} – {d.get("categoria", "")} dal Lazio per ristoranti | Filo Corto', d['desc'], corpo, r='../', schemi=schemi), encoding='utf-8')
+    if elenco:
+        voci = ''.join(f'<a href="{d["slug"]}.html"><b>{d["nome"]}</b><span>{d.get("categoria", "")} · {d.get("zona", "")}. {d["breve"]}</span><i>→</i></a>' for d in elenco)
+        indice = ('<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / I produttori della rete</p><h1>I produttori della rete</h1>'
+                  '<p class="grande">Piccoli produttori del Lazio che hanno aderito a Filo Corto. Ogni pagina è scritta con il produttore e pubblicata con il suo consenso.</p></div></div>'
+                  f'<section class="sez bianca"><div class="wrap"><div class="elenco-guide">{voci}</div></div></section>' + cta('../'))
+        (cartella / 'index.html').write_text(pagina('produttori/index.html', 'I produttori della rete: piccoli produttori del Lazio per ristoranti | Filo Corto',
+                                                    'I piccoli produttori del Lazio che hanno aderito a Filo Corto: chi sono, cosa producono, dove si trovano. Per ristoranti, bar e hotel del Lazio.', indice, r='../'), encoding='utf-8')
+    return elenco
+
+
 def costruisci():
     nuove = sorted((leggi(p) for p in (RADICE / 'src/guide').glob('*.html')), key=lambda g: g.get('data', ''), reverse=True)
     tutte = [(g['slug'], g['h1'], g['breve']) for g in nuove] + STORICHE
@@ -104,10 +149,13 @@ def costruisci():
     for p in (RADICE / 'src/pagine').glob('*.html'):
         d = leggi(p)
         (RADICE / 'site' / (d['slug'] + '.html')).write_text(pagina(d['slug'] + '.html', d['titolo'], d['desc'], d['corpo'], menu=d.get('menu'), noindex=d.get('noindex') == 'si'), encoding='utf-8')
+    rete = produttori()
     oggi = datetime.date.today().isoformat()
     righe = [f'<url><loc>{URL}{u}</loc></url>' for u in PAGINE_FISSE] + [f'<url><loc>{URL}guide/{s}.html</loc></url>' for s, _, _ in STORICHE] + [f'<url><loc>{URL}guide/{g["slug"]}.html</loc><lastmod>{g["data"]}</lastmod></url>' for g in nuove]
+    if rete:
+        righe += [f'<url><loc>{URL}produttori/</loc></url>'] + [f'<url><loc>{URL}produttori/{d["slug"]}.html</loc></url>' for d in rete]
     (RADICE / 'site/sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(righe) + '\n</urlset>\n', encoding='utf-8')
-    print(f'Costruite {len(nuove)} guide nuove, {len(tutte)} in indice ({oggi}).')
+    print(f'Costruite {len(nuove)} guide nuove, {len(tutte)} in indice, {len(rete)} produttori ({oggi}).')
 
 
 if __name__ == '__main__':

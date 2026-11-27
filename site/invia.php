@@ -75,6 +75,9 @@ if ($tipo === 'scheda') {
         'Quantità a settimana'     => campo('quantita', 200),
         'Mesi di disponibilità'    => campo('mesi', 160),
         'Note'                     => campo('note', 1500, true),
+        'Racconto per la pagina'   => "\n" . campo('storia', 2500, true),
+        'Certificazioni dichiarate' => campo('certificazioni', 200),
+        'Vuole la pagina sul sito' => campo('pubblicazione', 5) === 'si' ? 'sì (consenso da confermare sul testo finale)' : 'no',
         'Patti chiari accettati'   => 'sì',
     ];
     $obbligatori = ['Azienda', 'Referente', 'Comune e provincia', 'Giorni di consegna', 'Quantità a settimana'];
@@ -125,6 +128,9 @@ if ($ok) {
         $oggettoConferma = 'Filo Corto – candidatura ricevuta: il prossimo passo';
     } elseif ($tipo === 'scheda') {
         $conferma = "Buongiorno,\n\ngrazie: abbiamo ricevuto la tua scheda di adesione a Filo Corto.\n\nOggi raccogliamo le adesioni dei produttori del Lazio. Quando partiamo con i check-up in azienda e con la prova con le prime cucine, ti scriviamo noi per fissare la visita.\n\nSe nel frattempo cambiano prodotti, prezzi o giorni di consegna, basta rispondere a questa email.";
+        if (campo('pubblicazione', 5) === 'si') {
+            $conferma .= "\n\nHai chiesto anche la tua pagina sul sito: rispondendo a questa email puoi mandarci 2 o 3 foto della tua azienda e dei tuoi prodotti (solo foto tue, o che hai il permesso di usare). La pagina la scriviamo insieme dopo il check-up: prima che esca ti mandiamo il testo da approvare.";
+        }
         $oggettoConferma = 'Filo Corto – scheda di adesione ricevuta';
     } else {
         $conferma = "Buongiorno,\n\ngrazie: abbiamo ricevuto la tua richiesta.\n\nFilo Corto è una rete in costruzione: oggi raccogliamo le adesioni dei produttori del Lazio e le richieste delle cucine. Nessun prodotto è ancora in vendita. Ti scriviamo appena ci sono produttori pronti per i prodotti e per la zona che ci hai indicato.\n\nIntanto, se vuoi scrivere il nome dei tuoi fornitori nel menu, c'è uno strumento gratuito: https://ilfilocorto.it/riga-menu.html";

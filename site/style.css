@@ -193,3 +193,14 @@ th{background:var(--ink);color:var(--carta);font-size:12.5px;letter-spacing:.1em
 .carta-menu small{font-family:Georgia,serif;font-style:italic;font-size:16px;color:var(--testo)}
 @media (max-width:860px){.timbro{right:-6px}.lungo,.corto{padding:20px 16px 22px}.fili h3{font-size:21px}}
 @media (prefers-reduced-motion:reduce){.arte path[stroke-dasharray]{animation:none}.cartellino{transition:none}body:before{display:none}}
+
+/* Pagine dei produttori della rete */
+.scheda-p{margin:0 0 18px;border:2px solid var(--ink);background:var(--carta);box-shadow:6px 6px 0 var(--ink)}
+.scheda-p div{padding:14px 18px;border-bottom:2px solid var(--ink)}
+.scheda-p div:last-child{border-bottom:0}
+.scheda-p dt{font-weight:800;font-stretch:74%;text-transform:uppercase;font-size:14px;letter-spacing:.04em;color:var(--verde)}
+.scheda-p dd{margin:4px 0 0;color:var(--ink)}
+.foto-p{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px;margin:40px 0 10px}
+.foto-p img{width:100%;aspect-ratio:4/3;object-fit:cover;border:2px solid var(--ink);display:block}
+.due > .prosa > h2:first-child{margin-top:0}
+.scheda-p + .piccolo{margin:0 0 16px}
