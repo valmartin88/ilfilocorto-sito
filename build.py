@@ -4,6 +4,7 @@
 Uso: python3 build.py
 - src/guide/<slug>.html  -> site/guide/<slug>.html (+ indice guide e sitemap)
 - src/pagine/<nome>.html -> site/<nome>.html
+- src/territori/<slug>.html -> site/territori/<slug>.html (+ indice /territori/)
 - src/produttori/<slug>.html -> site/produttori/<slug>.html (+ pagina «I produttori della rete», solo se ce n'è almeno uno)
   Si pubblica un produttore SOLO dopo scheda di adesione, check-up e consenso scritto alla pubblicazione (vedi README).
 Ogni file in src/ comincia con righe "chiave: valore", poi una riga "---", poi il corpo HTML.
@@ -126,6 +127,44 @@ def produttori():
     return elenco
 
 
+# ---------- Pagine di territorio ----------
+# Intestazione di src/territori/<slug>.html: titolo, h1, desc, breve, intro, zona (es. Provincia di Viterbo), data.
+
+def territori():
+    if not (RADICE / 'src/territori').exists():
+        return []
+    elenco = sorted((leggi(p) for p in (RADICE / 'src/territori').glob('*.html')), key=lambda d: d['h1'])
+    if not elenco:
+        return []
+    cartella = RADICE / 'site/territori'
+    cartella.mkdir(parents=True, exist_ok=True)
+    for d in elenco:
+        url = URL + 'territori/' + d['slug'] + '.html'
+        schemi = [{'@context': 'https://schema.org', '@type': 'Article', 'headline': d['h1'], 'description': d['desc'], 'inLanguage': 'it', 'datePublished': d['data'], 'dateModified': d['data'], 'mainEntityOfPage': url, 'image': URL + 'og.png',
+                   'about': {'@type': 'Place', 'name': d.get('zona', ''), 'containedInPlace': {'@type': 'AdministrativeArea', 'name': 'Lazio'}},
+                   'author': {'@type': 'Person', 'name': 'Valerio Semeraro', 'jobTitle': 'Food Specialist e consulente HACCP'}, 'publisher': {'@type': 'Organization', 'name': 'Filo Corto', 'logo': {'@type': 'ImageObject', 'url': URL + 'icona.png'}}},
+                  {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Filo Corto', 'item': URL}, {'@type': 'ListItem', 'position': 2, 'name': 'Territori', 'item': URL + 'territori/'}, {'@type': 'ListItem', 'position': 3, 'name': d['h1'], 'item': url}]}]
+        altri = ''.join(f'<a href="{t["slug"]}.html"><b>{t["h1"]}</b><span>{t["breve"]}</span><i>→</i></a>' for t in elenco if t['slug'] != d['slug'])
+        altri_sez = f'<section class="sez"><div class="wrap"><div class="testa"><p class="occhiello">Altri territori</p><h2>Il resto del Lazio</h2></div><div class="elenco-guide">{altri}</div></div></section>' if altri else ''
+        corpo = (f'<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / <a href="./">Territori</a></p><p class="occhiello">{d.get("zona", "")}</p><h1>{d["h1"]}</h1><p class="grande">{d["intro"]}</p>'
+                 '<p class="piccolo">Di Valerio Semeraro, Food Specialist e consulente HACCP</p></div></div><div class="filo"></div>'
+                 f'<section class="sez bianca" style="border-top:0"><div class="wrap"><article class="prosa">{d["corpo"]}'
+                 '<div class="nota"><p><strong>Nota.</strong> DOP, IGP e DOC si possono scrivere su etichetta, listino e menu solo per il prodotto certificato secondo il disciplinare. In caso di dubbio fa fede il consorzio di tutela o l\'organismo di controllo.</p></div></article></div></section>'
+                 f'<section class="sez"><div class="wrap"><div class="testa"><p class="occhiello">Prima di proporti</p><h2>Le guide utili</h2></div><div class="elenco-guide">'
+                 + voce('../guide/vendere-ai-ristoranti', 'Come vendere ai ristoranti', 'I passi concreti, dal prodotto al pagamento.')
+                 + voce('../guide/documenti-per-vendere-ai-ristoranti', 'Documenti e requisiti', 'Cosa serve per vendere a ristoranti e hotel.')
+                 + voce('../guide/listino-per-ristoranti', 'Il listino per ristoranti', 'Cosa scriverci e in quale forma.')
+                 + '</div></div></section>' + altri_sez + cta('../'))
+        (cartella / (d['slug'] + '.html')).write_text(pagina('territori/' + d['slug'] + '.html', d['titolo'], d['desc'], corpo, r='../', schemi=schemi, articolo=True), encoding='utf-8')
+    voci = ''.join(f'<a href="{d["slug"]}.html"><b>{d["h1"]}</b><span>{d["breve"]}</span><i>→</i></a>' for d in elenco)
+    indice = ('<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / Territori</p><h1>I territori del Lazio</h1>'
+              '<p class="grande">Cosa si produce nelle diverse zone del Lazio e cosa cerca la ristorazione. Per i piccoli produttori che vogliono arrivare nelle cucine di ristoranti, bar e hotel.</p></div></div>'
+              f'<section class="sez bianca"><div class="wrap"><div class="elenco-guide">{voci}</div></div></section>' + cta('../'))
+    (cartella / 'index.html').write_text(pagina('territori/index.html', 'Produttori del Lazio per territorio: cosa cerca la ristorazione | Filo Corto',
+                                                'Tuscia, Sabina, Castelli Romani, Ciociaria, Agro Pontino: cosa si produce nelle zone del Lazio e come proporsi a ristoranti, bar e hotel.', indice, r='../'), encoding='utf-8')
+    return elenco
+
+
 def costruisci():
     nuove = sorted((leggi(p) for p in (RADICE / 'src/guide').glob('*.html')), key=lambda g: g.get('data', ''), reverse=True)
     tutte = [(g['slug'], g['h1'], g['breve']) for g in nuove] + STORICHE
@@ -144,18 +183,23 @@ def costruisci():
         (RADICE / 'site/guide' / (g['slug'] + '.html')).write_text(pagina('guide/' + g['slug'] + '.html', g['titolo'], g['desc'], corpo, r='../', menu='guide/', schemi=schemi, articolo=True), encoding='utf-8')
     indice = ('<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / Guide</p><h1>Guide per chi vuole vendere alla ristorazione</h1>'
               '<p class="grande">Scritte per i piccoli produttori, da chi lavora in cucina da 25 anni. Niente giri di parole: cosa serve, in che ordine.</p></div></div>'
-              '<section class="sez bianca"><div class="wrap"><div class="elenco-guide">' + ''.join(voce(*t) for t in tutte) + '</div></div></section>' + cta('../'))
+              '<section class="sez bianca"><div class="wrap"><div class="elenco-guide">' + ''.join(voce(*t) for t in tutte) + '</div>'
+              + ('<p class="grande" style="margin-top:34px">Cerchi il tuo territorio? <a href="../territori/">Leggi le pagine sulle zone del Lazio →</a></p>' if (RADICE / 'src/territori').exists() and any((RADICE / 'src/territori').glob('*.html')) else '')
+              + '</div></section>' + cta('../'))
     (RADICE / 'site/guide/index.html').write_text(pagina('guide/index.html', 'Guide per produttori: vendere a ristoranti e hotel | Filo Corto', 'Guide pratiche per piccoli produttori che vogliono vendere alla ristorazione: come proporsi, documenti e requisiti, listino, cosa chiede uno chef, prodotto per prodotto.', indice, r='../', menu='guide/'), encoding='utf-8')
     for p in (RADICE / 'src/pagine').glob('*.html'):
         d = leggi(p)
         (RADICE / 'site' / (d['slug'] + '.html')).write_text(pagina(d['slug'] + '.html', d['titolo'], d['desc'], d['corpo'], menu=d.get('menu'), noindex=d.get('noindex') == 'si'), encoding='utf-8')
     rete = produttori()
+    zone = territori()
     oggi = datetime.date.today().isoformat()
     righe = [f'<url><loc>{URL}{u}</loc></url>' for u in PAGINE_FISSE] + [f'<url><loc>{URL}guide/{s}.html</loc></url>' for s, _, _ in STORICHE] + [f'<url><loc>{URL}guide/{g["slug"]}.html</loc><lastmod>{g["data"]}</lastmod></url>' for g in nuove]
+    if zone:
+        righe += [f'<url><loc>{URL}territori/</loc></url>'] + [f'<url><loc>{URL}territori/{d["slug"]}.html</loc><lastmod>{d["data"]}</lastmod></url>' for d in zone]
     if rete:
         righe += [f'<url><loc>{URL}produttori/</loc></url>'] + [f'<url><loc>{URL}produttori/{d["slug"]}.html</loc></url>' for d in rete]
     (RADICE / 'site/sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(righe) + '\n</urlset>\n', encoding='utf-8')
-    print(f'Costruite {len(nuove)} guide nuove, {len(tutte)} in indice, {len(rete)} produttori ({oggi}).')
+    print(f'Costruite {len(nuove)} guide nuove, {len(tutte)} in indice, {len(zone)} territori, {len(rete)} produttori ({oggi}).')
 
 
 if __name__ == '__main__':

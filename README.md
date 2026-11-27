@@ -27,3 +27,10 @@ Regole: solo cose dichiarate e dimostrabili dal produttore; biologico, DOP, IGP 
 nessuna proprietà salutistica; niente prezzi e niente telefono sulla pagina; mai «verificato»; nessuna vendita promessa.
 Quando esce il primo produttore, aggiungere il link «I produttori» nel menu e in home (pagine sul server).
 Per togliere una pagina: cancellare il file in `src/produttori/`, ricostruire, e cancellare il file dal server.
+
+## Pagine di territorio
+
+`src/territori/<slug>.html`, stesso formato delle guide (titolo, h1, desc, breve, intro, zona, data, `---`, corpo).
+Il generatore crea la pagina, l'indice /territori/ e la sitemap. Una zona per pagina:
+Tuscia (fatta), Sabina, Castelli Romani, Ciociaria, Agro Pontino, poi Valle dell'Aniene, Reatino, Litorale.
+Solo DOP, IGP, DOC e PAT controllati sulle fonti (ARSIAL, Regione Lazio, disciplinari). Nessun nome di azienda.
