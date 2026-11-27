@@ -313,3 +313,14 @@ ul.fiducia li:before{content:"";width:12px;height:12px;border-radius:50%;backgro
 @media (max-width:640px){.cat{grid-template-columns:repeat(2,1fr)}}
 .scura > .wrap > .occhiello{margin-bottom:18px}
 @media (max-width:640px){.carte-s{grid-template-columns:1fr 1fr;gap:12px}.carta-s{padding:18px 14px}.carta-s b{font-size:22px}.passi-h i{font-size:64px}}
+
+/* Foto */
+.foto{margin:0;position:relative;overflow:hidden;background:#2f5d3a;border:3px solid var(--ink)}
+.foto img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.foto:hover img{transform:scale(1.04)}
+.foto figcaption{position:absolute;left:16px;bottom:16px;background:var(--carta);border:2px solid var(--ink);padding:6px 12px;font-weight:900;font-stretch:70%;text-transform:uppercase;font-size:20px;letter-spacing:.02em}
+.foto.larga{height:clamp(220px,34vw,440px);margin:6px 0 40px}
+.mosaico{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:240px 240px;gap:16px}
+.mosaico .a{grid-row:1/3}
+@media (max-width:700px){.mosaico{grid-template-columns:1fr 1fr;grid-template-rows:260px 180px}.mosaico .a{grid-row:auto;grid-column:1/3}}
+@media (prefers-reduced-motion:reduce){.foto img{transition:none}}

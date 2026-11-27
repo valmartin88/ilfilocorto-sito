@@ -14,7 +14,7 @@ import json, pathlib, datetime
 
 RADICE = pathlib.Path(__file__).parent
 URL = 'https://ilfilocorto.it/'
-CSS_V = '7'
+CSS_V = '8'
 
 # Guide pubblicate prima di questo sistema: i file restano sul server, qui servono per indice e sitemap.
 STORICHE = [
@@ -29,7 +29,7 @@ PAGINE_FISSE = ['', 'produttori.html', 'cucine.html', 'come-funziona.html', 'pro
 LOGO = '<svg width="46" height="46" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="38" r="16.85" fill="#F2F4F0" stroke="#E8692C" stroke-width="6.3"/><circle cx="30" cy="38" r="5.85" fill="#12302B"/><path d="M30 21 C 30 11, 37 5, 48 5 C 48 15, 41 21, 30 21 Z" fill="#2f5d3a"/></svg>'
 ORG = {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Filo Corto', 'url': URL, 'logo': URL + 'icona.png', 'email': 'info@ilfilocorto.it', 'areaServed': 'Lazio', 'description': 'Rete di piccoli produttori del Lazio per ristoranti, bar e hotel. Rete in costruzione.', 'founder': {'@type': 'Person', 'name': 'Valerio Semeraro'}}
 RIVELA = ('<script>(function(){if(!("IntersectionObserver"in window)||matchMedia("(prefers-reduced-motion: reduce)").matches)return;'
-          'var el=document.querySelectorAll(".porta,.porta2,.tessera,ol.passi li,.fili>div,.elenco-guide a,.modulo,.riquadro,.manifesto p,.tappe,.gettoni,.testa,.pilastri>div,.carta-s,.passi-h>div,.cat");'
+          'var el=document.querySelectorAll(".porta,.porta2,.tessera,ol.passi li,.fili>div,.elenco-guide a,.modulo,.riquadro,.manifesto p,.tappe,.gettoni,.testa,.pilastri>div,.carta-s,.passi-h>div,.cat,.foto");'
           'var o=new IntersectionObserver(function(v){v.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});'
           'el.forEach(function(x){if(x.getBoundingClientRect().top>innerHeight){x.classList.add("rv");o.observe(x)}})})();</script>')
 MENU = [('produttori.html', 'Produttori'), ('cucine.html', 'Cucine'), ('come-funziona.html', 'Come funziona'), ('check-up.html', 'Check-up'), ('guide/', 'Guide'), ('chi-siamo.html', 'Chi siamo')]

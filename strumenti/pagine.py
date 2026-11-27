@@ -37,6 +37,17 @@ I = {
  'casa': ico('<path d="M10 30L32 12l22 18"/><path d="M16 26v28h32V26"/><path d="M27 54V40h10v14" stroke="#E8692C"/>'),
 }
 
+def foto(f, alt, cls='', testo=''):
+    t = f'<figcaption>{testo}</figcaption>' if testo else ''
+    return f'<figure class="foto {cls}"><img src="foto.php?f={f}" alt="{alt}" loading="lazy" decoding="async">{t}</figure>'
+
+def fascia_foto(f, alt):
+    return '<div class="wrap">' + foto(f, alt, 'larga') + '</div>'
+
+MOSAICO = ('<div class="mosaico">' + foto('uliveto', 'Rami di ulivo con olive', 'a', 'La terra')
+           + foto('mani', 'Mani di un contadino con patate appena raccolte', 'b', 'Le mani')
+           + foto('chef', 'Uno chef che impiatta', 'c', 'La cucina') + '</div>')
+
 def scrivi(slug, titolo, desc, corpo, menu='', extra=''):
     testa = f'titolo: {titolo}\ndesc: {desc}\n' + (f'menu: {menu}\n' if menu else '') + extra + '---\n'
     (P / f'{slug}.html').write_text(testa + corpo.strip() + '\n', encoding='utf-8')
@@ -108,6 +119,7 @@ home = (
        '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare dalle cucine.</h2><p>Una pagina tua, il listino davanti agli chef, il check-up gratis per i primi.</p><span class="vai">Entra nella rete →</span></a>'
        '<a class="porta2 v" href="cucine.html"><p class="occhiello">Se cucini</p><h2>Prodotti veri, regole da cucina.</h2><p>Campione prima di ordinare. Prezzi, consegne e quantità per iscritto.</p><span class="vai">Chiedi un campione →</span></a>'
        '</div>', cls='bianca')
+ + sez(MOSAICO)
  + sez('<p class="occhiello">Perché esistiamo</p><div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E nessuno li vede.</em></p><p>Il made in Italy vive solo se arriva in tavola.</p></div>'
        '<div class="pilastri">'
        f'<div>{I["occhio"]}<h3>Visibili</h3><p>Ogni produttore con nome, luogo e una pagina sua.</p></div>'
@@ -139,6 +151,7 @@ scrivi('index', 'Filo Corto | Piccoli produttori italiani per ristoranti, bar e 
 prod = (capo('Produttori', 'Fai un prodotto vero? Fatti trovare.',
              'Ti presentiamo a ristoranti, bar e hotel, insieme ad altri piccoli produttori. Gratis.',
              '<div class="btns" style="margin-top:24px">' + btn('#candidati', 'Candidati') + btn('prova.html', 'Sei pronto? Fai la prova', '') + '</div>')
+ + fascia_foto('mani', 'Mani di un contadino con patate appena raccolte')
  + sez('<div class="due"><div class="riquadro"><h3>Ti diamo</h3>' + punti('Una pagina tutta tua', 'Il listino davanti alle cucine', 'Il check-up gratis (per i primi)', 'Un solo interlocutore') +
        '</div><div class="riquadro m"><h3>Ti chiediamo</h3>' + punti('Materie prime italiane', 'Giorni di consegna fissi', 'Prezzi e quantità per iscritto', 'Documenti e lotti in ordine') + '</div></div>' + PATTI, cls='bianca')
  + sez(passi(('Ti candidi', '2 minuti, qui sotto.'), ('Scheda e check-up', 'Prodotti, prezzi, consegne. Poi la visita.'), ('Entri nel listino', 'E nella prova con le prime cucine.')), cls='scura', occhiello='Come si entra', h2='Tre passi')
@@ -165,6 +178,7 @@ scrivi('produttori', 'Vendere ai ristoranti: la rete dei piccoli produttori | Fi
 cuc = (capo('Cucine', 'Prodotti veri per la tua cucina.',
             'Da piccoli produttori, con materie prime italiane. E con le regole che servono a una cucina.',
             '<div class="btns" style="margin-top:24px">' + btn('#richiesta', 'Chiedi un campione') + '</div>')
+ + fascia_foto('chef', 'Uno chef che impiatta')
  + sez(tessere(('Quando arriva?', 'Giorni e orari d\'ordine scritti.', False),
                ('Quanto costa?', 'Listino unico, al kg o al pezzo.', True),
                ('Ci sarà sempre?', 'Quantità settimanale scritta.', False), cls='tre')
@@ -194,6 +208,7 @@ scrivi('cucine', 'Prodotti italiani per ristoranti, bar e hotel | Filo Corto',
 chk = (capo('Check-up', 'Sei pronto per le cucine?',
             'Una visita, una lista uguale per tutti, un rapporto scritto. Gratis per i primi produttori.',
             '<div class="btns" style="margin-top:24px">' + btn('produttori.html#candidati', 'Candidati') + '</div>')
+ + fascia_foto('formaggi', 'Forme di formaggio in stagionatura')
  + sez(tessere(('Documenti', 'Registrazione, autocontrollo, registri, formazione.', False),
                ('Prodotto', 'Origine delle materie prime, lotti, etichette, allergeni.', True),
                ('Consegne e prezzi', 'Trasporto, tempi, listino, quantità.', False), cls='tre'),
@@ -208,6 +223,7 @@ scrivi('check-up', 'Check-up per piccoli produttori: pronto per ristoranti e hot
 # ---------------- COME FUNZIONA ----------------
 cf = (capo('Come funziona', 'Come funziona',
            'Niente magazzino, niente rivendita. Mettiamo in contatto chi produce e chi cucina, con le stesse regole per tutti.')
+ + fascia_foto('legumi', 'Legumi secchi al mercato')
  + sez('<div class="due"><div class="riquadro"><h3>Se produci</h3>' + passi(('Ti candidi', '2 minuti.'), ('Scheda e check-up', 'Poi la visita.'), ('Entri nel listino', 'E nella prova.')) +
        '</div><div class="riquadro m"><h3>Se cucini</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>', cls='bianca')
  + sez(PATTI + '<p class="grande" style="margin-top:28px">Consegne: le definiamo con i primi produttori. L\'obiettivo è una consegna unica in giorni fissi.</p>'
@@ -219,6 +235,7 @@ scrivi('come-funziona', 'Come funziona Filo Corto | Filo Corto',
 # ---------------- CHI SIAMO ----------------
 cs = (capo('Chi siamo', 'Appassionati del cibo vero.',
            'Veniamo dalle cucine. Vogliamo che il prodotto delle nostre terre torni nei piatti.')
+ + fascia_foto('uliveto', 'Rami di ulivo con olive')
  + sez('<div class="manifesto"><p>Da una parte ottimi piccoli produttori. Dall\'altra cucine che comprano solo dai grandi distributori.<br><em>Filo Corto accorcia questa distanza.</em></p></div>'
        + tessere(('Si sa chi lo fa', 'Nome e indirizzo.', False), ('È italiano', 'Materie prime italiane.', True),
                  ('Si racconta', 'Una storia vera, per il menu.', False), ('È in regola', 'Documenti e lotti.', True)), cls='scura', occhiello='Cibo vero', h2='Cosa intendiamo')
