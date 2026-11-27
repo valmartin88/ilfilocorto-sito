@@ -19,6 +19,24 @@ ARTE = ('<svg class="arte" viewBox="0 0 440 440" role="img" aria-label="Dal camp
         + cerchio(330, 318, 74, 'bersaglio') +
         '<text x="44" y="246" class="lab">DAL CAMPO</text><text x="408" y="424" text-anchor="end" class="lab">ALLA CUCINA</text></svg>')
 
+
+# Icone a linea (64x64), tratto inchiostro, accento arancione
+def ico(corpo):
+    return f'<svg class="ico" viewBox="0 0 64 64" fill="none" stroke="#1f2420" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{corpo}</svg>'
+I = {
+ 'olio': ico('<path d="M27 8h10v8l4 6v30a4 4 0 0 1-4 4H27a4 4 0 0 1-4-4V22l4-6z"/><path d="M23 34h18" stroke="#E8692C"/><path d="M32 40c-3 4-3 7 0 8 3-1 3-4 0-8z" fill="#E8692C" stroke="#E8692C"/>'),
+ 'formaggio': ico('<path d="M8 40l28-22 20 12v14H8z"/><path d="M8 40h48"/><circle cx="22" cy="48" r="3" stroke="#E8692C"/><circle cx="40" cy="36" r="3" stroke="#E8692C"/>'),
+ 'conserve': ico('<rect x="16" y="20" width="32" height="36" rx="4"/><path d="M18 12h28v8H18z"/><path d="M22 36h20M22 44h14" stroke="#E8692C"/>'),
+ 'legumi': ico('<ellipse cx="22" cy="26" rx="8" ry="6"/><ellipse cx="42" cy="24" rx="8" ry="6"/><ellipse cx="32" cy="42" rx="8" ry="6"/><path d="M19 26h6M39 24h6M29 42h6" stroke="#E8692C"/>'),
+ 'miele': ico('<path d="M18 22h28l-2 32H20z"/><path d="M22 14h20v8H22z"/><path d="M32 30v10m-5-5h10" stroke="#E8692C"/>'),
+ 'vino': ico('<path d="M22 8h20v14a10 10 0 0 1-20 0z"/><path d="M32 32v18M24 56h16"/><path d="M23 16h18" stroke="#E8692C"/>'),
+ 'farine': ico('<path d="M32 56V14"/><path d="M32 22c-6-2-8-7-8-10 5 1 8 4 8 10zM32 22c6-2 8-7 8-10-5 1-8 4-8 10zM32 34c-6-2-8-7-8-10 5 1 8 4 8 10zM32 34c6-2 8-7 8-10-5 1-8 4-8 10zM32 46c-6-2-8-7-8-10 5 1 8 4 8 10zM32 46c6-2 8-7 8-10-5 1-8 4-8 10z" stroke="#E8692C"/>'),
+ 'salumi': ico('<path d="M14 40c0-14 12-26 26-26 6 0 10 4 10 10 0 14-12 26-26 26-6 0-10-4-10-10z"/><circle cx="28" cy="34" r="2.5" stroke="#E8692C"/><circle cx="38" cy="26" r="2.5" stroke="#E8692C"/><circle cx="34" cy="40" r="2.5" stroke="#E8692C"/>'),
+ 'occhio': ico('<path d="M6 32s10-16 26-16 26 16 26 16-10 16-26 16S6 32 6 32z"/><circle cx="32" cy="32" r="7" stroke="#E8692C"/>'),
+ 'bandiera': ico('<path d="M14 56V10"/><path d="M14 12h34l-6 9 6 9H14" /><path d="M14 30h34" stroke="#E8692C"/>'),
+ 'casa': ico('<path d="M10 30L32 12l22 18"/><path d="M16 26v28h32V26"/><path d="M27 54V40h10v14" stroke="#E8692C"/>'),
+}
+
 def scrivi(slug, titolo, desc, corpo, menu='', extra=''):
     testa = f'titolo: {titolo}\ndesc: {desc}\n' + (f'menu: {menu}\n' if menu else '') + extra + '---\n'
     (P / f'{slug}.html').write_text(testa + corpo.strip() + '\n', encoding='utf-8')
@@ -62,27 +80,50 @@ FILI = ('<div class="fili"><div class="lungo"><h3>Filo lungo</h3><ol class="cate
         '<li class="f"><span>Produttore</span></li><li><span>Grossista</span></li><li><span>Piattaforma</span></li><li><span>Distributore</span></li><li class="f"><span>Cucina</span></li></ol></div>'
         '<div class="corto"><h3>Filo corto</h3><ol class="catena"><li><span>Produttore</span></li><li><span>Cucina</span></li></ol></div></div>')
 
+
+STAGIONI = [
+ ('12,1,2', 'Inverno', [('Puntarelle', 'Il simbolo dell\'inverno romano.'), ('Broccolo romanesco', 'Cime verdi, sapore deciso.'), ('Olio nuovo', 'L\'olio dell\'ultima raccolta.'), ('Legumi secchi', 'Lenticchie, ceci, fagioli.')]),
+ ('3,4,5', 'Primavera', [('Carciofo romanesco', 'IGP del Lazio.'), ('Fave', 'Con il pecorino, a maggio.'), ('Asparagi', 'Verdi e selvatici.'), ('Abbacchio', 'Abbacchio Romano IGP.')]),
+ ('6,7,8', 'Estate', [('Pomodori', 'Da sugo e da insalata.'), ('Zucchine romanesche', 'Con il fiore.'), ('Miele', 'Millefiori e di castagno.'), ('Peperoni', 'Per conserve e forno.')]),
+ ('9,10,11', 'Autunno', [('Olio nuovo', 'Il frantoio riparte.'), ('Castagne', 'Dai Cimini e dalla Ciociaria.'), ('Nocciole', 'Tonda gentile romana.'), ('Broccolo romanesco', 'Arriva con il freddo.')]),
+]
+def stagione():
+    blocchi = ''
+    for mesi, nome, voci in STAGIONI:
+        carte = ''.join(f'<div class="carta-s"><span class="pallino"></span><b>{t}</b><span>{d}</span></div>' for t, d in voci)
+        blocchi += f'<div class="stag" data-mesi="{mesi}" hidden><p class="nome-s">{nome} nel Lazio</p><div class="carte-s">{carte}</div></div>'
+    js = ('<script>(function(){var m=new Date().getMonth()+1;document.querySelectorAll(".stag").forEach(function(b){'
+          'if(b.dataset.mesi.split(",").indexOf(String(m))>-1)b.hidden=false})})();</script>')
+    return blocchi + js
+
 # ---------------- HOME ----------------
 home = (
  '<div class="wrap"><div class="eroe"><div class="testo"><p class="occhiello">Rete in costruzione · si parte dal Lazio</p>'
  '<h1>Il prodotto vero, dal campo alla cucina.</h1>'
- '<p class="grande">Diamo visibilità ai piccoli produttori italiani e li portiamo nelle cucine di ristoranti, bar e hotel.</p>'
- '<div class="btns">' + btn('produttori.html', 'Sono un produttore') + btn('cucine.html', 'Ho una cucina', '') + '</div></div>'
+ '<p class="grande">Gli chef chiedono: «Cosa hanno i produttori?» I produttori chiedono: «Cosa vogliono gli chef?» Filo Corto mette insieme le due risposte.</p>'
+ '<div class="btns">' + btn('produttori.html', 'Sono un produttore') + btn('cucine.html', 'Ho una cucina', '') + '</div>'
+ '<ul class="fiducia"><li>Solo materie prime italiane</li><li>Fattura diretta</li><li>Adesione gratuita</li></ul></div>'
  + ARTE + '</div></div>' + NASTRO
- + sez('<div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E nessuno li vede.</em></p>'
-       '<p>Intanto nei piatti arriva merce che viene da fuori. Noi vogliamo il contrario: <strong>il prodotto vero delle nostre terre, sulle nostre tavole.</strong></p></div>'
-       + tessere(('Visibili', 'Ogni produttore con nome, luogo e pagina sua.', False),
-                 ('Italiani', 'Solo materie prime italiane. Niente import, né UE né extra UE.', True),
-                 ('Vicini', 'Dal territorio alle sue cucine.', False), cls='tre'),
-       cls='scura', occhiello='Perché esistiamo', h2='Il made in Italy vive se arriva in tavola')
- + sez('<div class="porte">'
-       '<div class="porta"><span class="timbro">Check-up gratis per i primi</span><p class="occhiello">Se produci</p><h2>Fatti trovare dalle cucine.</h2>'
-       + punti('Una pagina tutta tua, gratis', 'Il tuo listino davanti a chi cucina', 'Un check-up per presentarti in regola') + btn('produttori.html', 'Entra nella rete') + '</div>'
-       '<div class="porta v"><p class="occhiello">Se cucini</p><h2>Prodotti veri, regole da cucina.</h2>'
-       + punti('Solo materie prime italiane', 'Campione prima di ordinare', 'Prezzi e consegne per iscritto') + btn('cucine.html', 'Chiedi un campione', 'miele') + '</div></div>', cls='bianca')
- + sez(FILI, occhiello='La differenza', h2='Meno passaggi, più valore')
- + sez(passi(('Il produttore si candida', 'Poi scheda e check-up.'), ('La cucina assaggia', 'Campione gratis.'), ('Ordine e fattura diretta', 'Dal produttore alla cucina.')) + PATTI,
-       cls='bianca', occhiello='Come funziona', h2='Tre passi, patti chiari')
+ + sez('<div class="due-porte">'
+       '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare dalle cucine.</h2><p>Una pagina tua, il listino davanti agli chef, il check-up gratis per i primi.</p><span class="vai">Entra nella rete →</span></a>'
+       '<a class="porta2 v" href="cucine.html"><p class="occhiello">Se cucini</p><h2>Prodotti veri, regole da cucina.</h2><p>Campione prima di ordinare. Prezzi, consegne e quantità per iscritto.</p><span class="vai">Chiedi un campione →</span></a>'
+       '</div>', cls='bianca')
+ + sez('<p class="occhiello">Perché esistiamo</p><div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E nessuno li vede.</em></p><p>Il made in Italy vive solo se arriva in tavola.</p></div>'
+       '<div class="pilastri">'
+       f'<div>{I["occhio"]}<h3>Visibili</h3><p>Ogni produttore con nome, luogo e una pagina sua.</p></div>'
+       f'<div>{I["bandiera"]}<h3>Italiani</h3><p>Solo materie prime italiane. Niente import, né UE né extra UE.</p></div>'
+       f'<div>{I["casa"]}<h3>Vicini</h3><p>Dal territorio alle sue cucine. Si parte dal Lazio.</p></div></div>',
+       cls='scura')
+ + sez(stagione() + '<p class="piccolo" style="margin-top:18px">Cosa offre la terra in questo periodo. Il listino della rete arriverà con i primi produttori.</p>',
+       occhiello='In stagione ora', h2='Il calendario delle nostre terre')
+ + sez(FILI, cls='bianca', occhiello='La differenza', h2='Meno passaggi, più valore')
+ + sez('<div class="passi-h">'
+       '<div><i>1</i><b>Il produttore si candida</b><span>Due minuti, poi scheda e check-up.</span></div>'
+       '<div><i>2</i><b>La cucina assaggia</b><span>Il campione è gratis.</span></div>'
+       '<div><i>3</i><b>Ordine e fattura diretta</b><span>Dal produttore alla cucina.</span></div></div>' + PATTI,
+       occhiello='Come funziona', h2='Tre passi, patti chiari')
+ + sez('<div class="cat">' + ''.join(f'<div>{I[k]}<span>{n}</span></div>' for k, n in [('formaggio', 'Formaggi'), ('olio', 'Olio'), ('conserve', 'Conserve'), ('legumi', 'Legumi e cereali'), ('miele', 'Miele'), ('vino', 'Vino e birra'), ('farine', 'Farine e pasta'), ('salumi', 'Salumi')]) + '</div>'
+       + '<p style="margin-top:26px">' + btn('produttori.html#candidati', 'Produci uno di questi? Candidati') + '</p>', cls='bianca', occhiello='Chi cerchiamo', h2='Per cominciare: prodotti che viaggiano bene')
  + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Raccogliamo le adesioni</span></div><div><b>Poi</b><span>Prova con le prime cucine</span></div><div><b>Infine</b><span>Ordini online</span></div></div>'
        '<p class="piccolo" style="margin-top:16px">Nessun prodotto è ancora in vendita.</p>', occhiello='A che punto siamo', h2='Rete in costruzione')
  + sez('<div class="elenco-guide">'
