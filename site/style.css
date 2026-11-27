@@ -205,3 +205,23 @@ th{background:var(--ink);color:var(--carta);font-size:12.5px;letter-spacing:.1em
 .due > .prosa > h2:first-child{margin-top:0}
 .scheda-p + .piccolo{margin:0 0 16px}
 .prosa > h2:first-child{margin-top:0}
+
+/* Revisione 27/11: testi brevi, cerchio come SicuroFood */
+.marchio circle[stroke]{stroke:#E8692C;fill:#F2F4F0;stroke-width:6.3px}
+.marchio circle:not([stroke]){fill:#12302B}
+.arte{display:block;width:100%;height:auto}
+.arte .et{font:800 22px var(--f);font-stretch:80%;letter-spacing:.06em;fill:#1f2420}
+.arte .lab{font:900 34px var(--f);font-stretch:70%;letter-spacing:.01em;fill:#f7f3ea}
+ul.punti{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.punti li{position:relative;padding-left:32px;font-size:18px;line-height:1.35}
+ul.punti li:before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:#F2F4F0;border:5px solid #E8692C;box-sizing:border-box}
+.porta.v ul.punti li{color:var(--carta)}
+.porta h2{max-width:14ch}
+.faq{max-width:900px}
+.form fieldset.radio{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.form fieldset.radio legend{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;width:100%}
+.form fieldset.radio label{flex-direction:row;align-items:center;gap:8px;font-size:16px;font-weight:600;letter-spacing:0;text-transform:none}
+.form fieldset.radio input{width:20px;height:20px}
+.form button.full{justify-content:center}
+.verde-b .modulo a{color:var(--verde)}
+.tessere.uno{grid-template-columns:1fr}

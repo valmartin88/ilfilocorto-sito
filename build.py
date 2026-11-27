@@ -14,7 +14,7 @@ import json, pathlib, datetime
 
 RADICE = pathlib.Path(__file__).parent
 URL = 'https://ilfilocorto.it/'
-CSS_V = '4'
+CSS_V = '5'
 
 # Guide pubblicate prima di questo sistema: i file restano sul server, qui servono per indice e sitemap.
 STORICHE = [
@@ -189,7 +189,8 @@ def costruisci():
     (RADICE / 'site/guide/index.html').write_text(pagina('guide/index.html', 'Guide per produttori: vendere a ristoranti e hotel | Filo Corto', 'Guide pratiche per piccoli produttori che vogliono vendere alla ristorazione: come proporsi, documenti e requisiti, listino, cosa chiede uno chef, prodotto per prodotto.', indice, r='../', menu='guide/'), encoding='utf-8')
     for p in (RADICE / 'src/pagine').glob('*.html'):
         d = leggi(p)
-        (RADICE / 'site' / (d['slug'] + '.html')).write_text(pagina(d['slug'] + '.html', d['titolo'], d['desc'], d['corpo'], menu=d.get('menu'), noindex=d.get('noindex') == 'si'), encoding='utf-8')
+        schemi = [json.loads(d['schema'])] if d.get('schema') else []
+        (RADICE / 'site' / (d['slug'] + '.html')).write_text(pagina(d['slug'] + '.html', d['titolo'], d['desc'], d['corpo'], menu=d.get('menu') or None, noindex=d.get('noindex') == 'si', schemi=schemi), encoding='utf-8')
     rete = produttori()
     zone = territori()
     oggi = datetime.date.today().isoformat()

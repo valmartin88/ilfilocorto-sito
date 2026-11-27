@@ -34,3 +34,9 @@ Per togliere una pagina: cancellare il file in `src/produttori/`, ricostruire, e
 Il generatore crea la pagina, l'indice /territori/ e la sitemap. Una zona per pagina:
 Tuscia (fatta), Sabina, Castelli Romani, Ciociaria, Agro Pontino, poi Valle dell'Aniene, Reatino, Litorale.
 Solo DOP, IGP, DOC e PAT controllati sulle fonti (ARSIAL, Regione Lazio, disciplinari). Nessun nome di azienda.
+
+## Missione e regola sull'origine (decisa da Val il 27/11/2026)
+
+Filo Corto dà visibilità ai piccoli produttori e tutela il prodotto vero delle nostre terre: nella rete entrano solo
+prodotti fatti con materie prime coltivate o allevate in Italia, niente prodotti importati (né UE né extra UE).
+Visione italiana, si parte dal Lazio. È una regola della rete, guardata al check-up: non presentarla come certificazione.
