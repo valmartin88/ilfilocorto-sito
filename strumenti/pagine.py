@@ -116,7 +116,7 @@ home = (
  '<ul class="fiducia"><li>Solo materie prime italiane</li><li>Fattura diretta</li><li>Adesione gratuita</li></ul></div>'
  + ARTE + '</div></div>' + NASTRO
  + sez('<div class="due-porte">'
-       '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare dalle cucine.</h2><p>Una pagina tua, il listino davanti agli chef, il check-up gratis per i primi.</p><span class="vai">Entra nella rete →</span></a>'
+       '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare da chi ti cerca da una vita.</h2><p>Chef, ristoratori, hotel. E chiunque cerchi il prodotto vero. Una pagina tua, gratis.</p><span class="vai">Entra nella rete →</span></a>'
        '<a class="porta2 v" href="cucine.html"><p class="occhiello">Se cucini</p><h2>Prodotti veri, regole da cucina.</h2><p>Campione prima di ordinare. Prezzi, consegne e quantità per iscritto.</p><span class="vai">Chiedi un campione →</span></a>'
        '</div>', cls='bianca')
  + sez(MOSAICO)
@@ -149,10 +149,10 @@ scrivi('index', 'Filo Corto | Piccoli produttori italiani per ristoranti, bar e 
 
 # ---------------- PRODUTTORI ----------------
 prod = (capo('Produttori', 'Fai un prodotto vero? Fatti trovare.',
-             'Ti presentiamo a ristoranti, bar e hotel, insieme ad altri piccoli produttori. Gratis.',
+             'C\'è chi ti cerca da una vita: chef, ristoratori, hotel, appassionati. Ti diamo una vetrina dove trovarti. Gratis.',
              '<div class="btns" style="margin-top:24px">' + btn('#candidati', 'Candidati') + btn('prova.html', 'Sei pronto? Fai la prova', '') + '</div>')
  + fascia_foto('mani', 'Mani di un contadino con patate appena raccolte')
- + sez('<div class="due"><div class="riquadro"><h3>Ti diamo</h3>' + punti('Una pagina tutta tua', 'Il listino davanti alle cucine', 'Il check-up gratis (per i primi)', 'Un solo interlocutore') +
+ + sez('<div class="due"><div class="riquadro"><h3>Ti diamo</h3>' + punti('Una pagina tutta tua, visibile a tutti', 'Il listino davanti alle cucine', 'Il check-up gratis (per i primi)', 'Un solo interlocutore') +
        '</div><div class="riquadro m"><h3>Ti chiediamo</h3>' + punti('Materie prime italiane', 'Giorni di consegna fissi', 'Prezzi e quantità per iscritto', 'Documenti e lotti in ordine') + '</div></div>' + PATTI, cls='bianca')
  + sez(passi(('Ti candidi', '2 minuti, qui sotto.'), ('Scheda e check-up', 'Prodotti, prezzi, consegne. Poi la visita.'), ('Entri nel listino', 'E nella prova con le prime cucine.')), cls='scura', occhiello='Come si entra', h2='Tre passi')
  + sez('<div class="due"><div><p class="grande">Ti rispondiamo per email con la scheda di adesione.</p><p>Oppure scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p></div>'
@@ -200,7 +200,7 @@ cuc = (capo('Cucine', 'Prodotti veri per la tua cucina.',
  + sez(faq(('Posso già ordinare?', 'Non ancora: ti scriviamo quando c\'è un produttore pronto nella tua zona.'),
            ('Devo lasciare il mio distributore?', 'No. Ti diamo quello che lui non ha.'),
            ('Come si paga?', 'A fattura, al produttore.'),
-           ('Vendete ai privati?', 'No: solo ristoranti, bar e hotel.')), occhiello='Domande', h2='In breve'))
+           ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.')), occhiello='Domande', h2='In breve'))
 scrivi('cucine', 'Prodotti italiani per ristoranti, bar e hotel | Filo Corto',
        'Formaggi, olio, conserve, legumi e miele da piccoli produttori, con materie prime italiane, per ristoranti, bar e hotel. Campione gratis, prezzi e consegne per iscritto.', cuc, menu='cucine.html')
 
@@ -258,7 +258,7 @@ FC = [('Posso già ordinare?', 'Non ancora: chiedi un campione e ti scriviamo qu
       ('Da dove vengono i prodotti?', 'Da piccoli produttori, con materie prime italiane. Su ogni prodotto: chi e dove.'),
       ('Devo lasciare il distributore?', 'No. Ti diamo quello che lui non ha.'),
       ('Come si paga?', 'A fattura, al produttore.'),
-      ('Vendete ai privati?', 'No: solo ristoranti, bar e hotel.')]
+      ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.')]
 dom = (capo('Domande', 'Domande frequenti', 'Risposte brevi.')
  + sez(faq(*FP), cls='bianca', occhiello='Se produci', h2='Produttori')
  + sez(faq(*FC), occhiello='Se cucini', h2='Cucine') + CTA)
