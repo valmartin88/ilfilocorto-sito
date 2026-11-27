@@ -225,3 +225,46 @@ ul.punti li:before{content:"";position:absolute;left:0;top:3px;width:18px;height
 .form button.full{justify-content:center}
 .verde-b .modulo a{color:var(--verde)}
 .tessere.uno{grid-template-columns:1fr}
+
+/* Revisione grafica dinamica (27/11 sera) */
+.tessere.tre{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
+.manifesto{max-width:980px;margin-bottom:40px}
+.manifesto p{font-weight:800;font-stretch:72%;text-transform:uppercase;font-size:clamp(28px,4.4vw,54px);line-height:1.02;letter-spacing:.005em;margin:0 0 22px}
+.manifesto p+p{font-weight:500;font-stretch:100%;text-transform:none;font-size:clamp(19px,2vw,24px);line-height:1.4;max-width:760px}
+.manifesto em{font-style:normal;color:var(--miele-chiaro)}
+.manifesto strong{color:var(--miele-chiaro)}
+ul.gettoni{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+ul.gettoni li{border:2px solid currentColor;padding:8px 14px 8px 34px;position:relative;font-weight:800;font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;font-size:14.5px;line-height:1.2}
+ul.gettoni li:before{content:"";position:absolute;left:11px;top:50%;margin-top:-8px;width:16px;height:16px;border-radius:50%;background:#F2F4F0;border:4px solid #E8692C;box-sizing:border-box}
+ul.gettoni a{color:inherit}
+.riquadro{border:3px solid var(--ink);background:var(--bianco);padding:28px 26px;box-shadow:8px 8px 0 var(--ink)}
+.riquadro.m{background:var(--miele-chiaro)}
+.riquadro h3{font-size:clamp(26px,3vw,36px);margin:0 0 18px;text-transform:uppercase;font-stretch:72%;font-weight:900;line-height:1}
+.riquadro ol.passi{border-top-color:var(--ink)}
+.tappe{display:grid;grid-template-columns:repeat(3,1fr);border:3px solid var(--ink);position:relative}
+.tappe div{padding:22px 22px 24px;display:flex;flex-direction:column;gap:6px;border-right:3px solid var(--ink);background:var(--bianco)}
+.tappe div:last-child{border-right:0}
+.tappe b{font-weight:900;font-stretch:66%;text-transform:uppercase;font-size:34px;line-height:1}
+.tappe .ora{background:var(--verde);color:var(--carta)}
+.tappe .ora b:after{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#E8692C;margin-left:10px;vertical-align:middle;animation:battito 1.6s ease-in-out infinite}
+@media (max-width:640px){.tappe{grid-template-columns:1fr}.tappe div{border-right:0;border-bottom:3px solid var(--ink)}.tappe div:last-child{border-bottom:0}}
+.fascia{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.fascia h2{margin:0;max-width:18ch}
+/* movimento */
+@keyframes battito{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+@keyframes ondeggia{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes scorre{to{transform:translateX(-40px)}}
+.arte .foglia{transform-box:fill-box;transform-origin:0% 100%;animation:ondeggia 4.5s ease-in-out infinite}
+.arte .bersaglio{transform-box:fill-box;transform-origin:center;animation:pulsa 2.4s ease-in-out infinite}
+.arte .onda{animation:scorre 6s linear infinite alternate}.arte .o2{animation-duration:8s}
+.porta,.tessera,.riquadro,.elenco-guide a{transition:transform .25s ease,box-shadow .25s ease}
+.porta:hover{transform:translate(-3px,-3px);box-shadow:12px 12px 0 var(--ink)}
+.tessera:hover{transform:translateY(-4px)}
+.riquadro:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.passi li.rv:nth-child(2),.tessere .rv:nth-child(2),.porte .rv:nth-child(2){transition-delay:.12s}
+.passi li.rv:nth-child(3),.tessere .rv:nth-child(3){transition-delay:.24s}
+.tessere .rv:nth-child(4){transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){.arte .foglia,.arte .bersaglio,.arte .onda,.tappe .ora b:after{animation:none}.rv{opacity:1;transform:none;transition:none}.porta:hover,.tessera:hover,.riquadro:hover{transform:none}}
