@@ -26,7 +26,7 @@ STORICHE = [
 ]
 PAGINE_FISSE = ['', 'produttori.html', 'cucine.html', 'come-funziona.html', 'prova.html', 'riga-menu.html', 'check-up.html', 'guide/', 'domande.html', 'chi-siamo.html', 'privacy.html']
 
-LOGO = '<svg width="46" height="46" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="38" r="17" stroke="#c9862b" stroke-width="6"/><circle cx="30" cy="38" r="5" fill="#1f2420"/><path d="M30 21 C 30 11, 37 5, 48 5 C 48 15, 41 21, 30 21 Z" fill="#2f5d3a"/></svg>'
+LOGO = '<svg width="46" height="46" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="38" r="16.85" fill="#F2F4F0" stroke="#E8692C" stroke-width="6.3"/><circle cx="30" cy="38" r="5.85" fill="#12302B"/><path d="M30 21 C 30 11, 37 5, 48 5 C 48 15, 41 21, 30 21 Z" fill="#2f5d3a"/></svg>'
 ORG = {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Filo Corto', 'url': URL, 'logo': URL + 'icona.png', 'email': 'info@ilfilocorto.it', 'areaServed': 'Lazio', 'description': 'Rete di piccoli produttori del Lazio per ristoranti, bar e hotel. Rete in costruzione.', 'founder': {'@type': 'Person', 'name': 'Valerio Semeraro'}}
 MENU = [('produttori.html', 'Produttori'), ('cucine.html', 'Cucine'), ('come-funziona.html', 'Come funziona'), ('check-up.html', 'Check-up'), ('guide/', 'Guide'), ('chi-siamo.html', 'Chi siamo')]
 
