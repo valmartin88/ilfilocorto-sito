@@ -28,7 +28,7 @@ if (isset($_GET['stato']) || isset($_GET['prepara'])) {
     foreach ($IN_USO as [$nome, $v]) {
         echo pronta($nome, $v) ? "ok      $nome ($v) " . round(filesize("$DIR/$nome-$v.jpg") / 1024) . " KB\n" : "manca   $nome ($v)\n";
     }
-    echo "\nLe foto si aggiungono a mano nell'archivio (cartella site/foto/). Dove manca la foto il sito mostra un disegno.\n";
+    echo "\nElenco delle foto attese: strumenti/foto-sul-server.txt nell'archivio. Dove manca la foto il sito mostra un disegno.\n";
     exit;
 }
 

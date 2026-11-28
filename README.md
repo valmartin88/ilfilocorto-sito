@@ -51,10 +51,11 @@ Per togliere una pagina: cancellare il file in `src/produttori/`, ricostruire, e
 
 ## Foto
 
-Le pagine chiedono le foto a `site/foto.php`, che le prende dalla cartella `site/foto/` (file `<nome>-<formato>.jpg`;
+Le pagine chiedono le foto a `site/foto.php`, che le prende dalla cartella `foto/` del sito (file `<nome>-<formato>.jpg`;
 nomi e formati sono in `$IN_USO`: `banda` 1600×640, `alto` 900×1000, `largo` 900×600). Dove il file manca esce un disegno del sito.
-Il sito non scarica niente da fuori: le foto si mettono a mano nell'archivio, già ritagliate, solo se la licenza lo permette
-(quelle scelte hanno licenza Unsplash e sono elencate in `FOTO_CREDITI` dentro `strumenti/pagine.py`).
+Il sito non scarica niente da fuori. Le dieci foto attuali (licenza Unsplash, autori in `FOTO_CREDITI` dentro `strumenti/pagine.py`)
+stanno solo sul server: le ha scaricate il browser di Val il 28/11/2026 e sono elencate, con la loro impronta, in
+`strumenti/foto-sul-server.txt`. Una foto nuova si può mettere in `site/foto/` (finisce sul server con il deploy).
 La pagina `crediti.html` elenca da sola gli autori delle foto presenti. Controllo: `https://ilfilocorto.it/foto.php?stato=1`.
 Le foto dei produttori sono dei produttori.
 

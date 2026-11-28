@@ -55,9 +55,24 @@ I = {
 FORMATI = {'banda': (1600, 640), 'alto': (900, 1000), 'largo': (900, 600)}
 
 
+def foto_presenti():
+    """Le foto disponibili: quelle nella cartella site/foto/ più quelle elencate in strumenti/foto-sul-server.txt."""
+    radice = P.parent.parent
+    nomi = {p.stem for p in (radice / 'site' / 'foto').glob('*.jpg')}
+    elenco = radice / 'strumenti' / 'foto-sul-server.txt'
+    if elenco.exists():
+        for riga in elenco.read_text(encoding='utf-8').splitlines():
+            if riga.strip() and not riga.startswith('#'):
+                nomi.add(riga.split()[0].removesuffix('.jpg'))
+    return nomi
+
+
+FOTO_PRESENTI = foto_presenti()
+
+
 def foto(f, alt, v='banda', cls='', testo='', r=''):
     w, h = FORMATI[v]
-    if not (P.parent.parent / 'site' / 'foto' / f'{f}-{v}.jpg').exists():
+    if f'{f}-{v}' not in FOTO_PRESENTI:
         alt = ''   # finché la foto non c'è esce un disegno decorativo: nessuna descrizione
     t = f'<figcaption>{testo}</figcaption>' if testo else ''
     return f'<figure class="foto {cls}"><img src="{r}foto.php?f={f}&amp;v={v}" alt="{alt}" width="{w}" height="{h}" decoding="async">{t}</figure>'
@@ -453,8 +468,7 @@ FOTO_CREDITI = [('ulivo', 'Olive sul ramo dopo la pioggia', 'The Now Time', 'hnk
                 ('barattoli', 'Barattoli su uno scaffale', 'Artem Kostelnyuk', 'NrqKwJ1KPo8'), ('cassette', 'Verdure in cassette di legno', 'Noah Buisson', 'XPltBlxfChk'),
                 ('mercato', 'Banco di un mercato rionale a Roma', 'Ágatha Depiné', 'sgQTbIU43Mg'), ('civita', 'Civita di Bagnoregio', 'Pablo Allendes', 'aVWzRGYLjZI'),
                 ('legumi', 'Legumi secchi al mercato', 'Shelley Pauls', 't4X660oKiYs')]
-CARTELLA_FOTO = P.parent.parent / 'site' / 'foto'
-presenti = [c for c in FOTO_CREDITI if any(CARTELLA_FOTO.glob(c[0] + '-*.jpg'))] if CARTELLA_FOTO.exists() else []
+presenti = [c for c in FOTO_CREDITI if any(n.split('-')[0] == c[0] for n in FOTO_PRESENTI)]
 if presenti:
     elenco_foto = ('<div class="scorri-x"><table><thead><tr><th>Foto</th><th>Autore</th><th>Fonte</th></tr></thead><tbody>'
                    + ''.join(f'<tr><td>{t}</td><td>{a}</td><td><a href="https://unsplash.com/photos/{c}" rel="noopener">Unsplash</a></td></tr>' for _, t, a, c in presenti)

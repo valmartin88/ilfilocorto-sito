@@ -86,8 +86,20 @@ def cta_cucine(r):
             f'<a class="btn" href="{r}cucine.html#richiesta">Chiedi un campione →</a></div></section>')
 
 
+def foto_presenti():
+    """Le foto disponibili: quelle nella cartella site/foto/ più quelle elencate in strumenti/foto-sul-server.txt."""
+    radice = RADICE
+    nomi = {p.stem for p in (radice / 'site' / 'foto').glob('*.jpg')}
+    elenco = radice / 'strumenti' / 'foto-sul-server.txt'
+    if elenco.exists():
+        for riga in elenco.read_text(encoding='utf-8').splitlines():
+            if riga.strip() and not riga.startswith('#'):
+                nomi.add(riga.split()[0].removesuffix('.jpg'))
+    return nomi
+
+
 def foto_banda(r, nome, alt):
-    if not (RADICE / 'site/foto' / (nome + '-banda.jpg')).exists():
+    if nome + '-banda' not in foto_presenti():
         alt = ''   # finché la foto non c'è esce un disegno decorativo: nessuna descrizione
     return (f'<div class="wrap"><figure class="foto larga"><img src="{r}foto.php?f={nome}&amp;v=banda" alt="{alt}" width="1600" height="640" decoding="async"></figure></div>')
 
