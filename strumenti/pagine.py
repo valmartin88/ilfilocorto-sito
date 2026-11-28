@@ -478,11 +478,11 @@ def fili_oro(n, grande=False):
 
 
 filo = (capo('Il filo d\'oro', 'Il filo <em>d\'oro.</em>',
-             'La nostra guida dei piccoli produttori. Entra solo chi supera l\'assaggio e la visita. Firmata da Valerio Semeraro, chef.')
+             'La nostra guida dei piccoli produttori. Entra solo chi supera l\'assaggio e la visita. A giudicare sono esperti del gusto: chef e professionisti della ristorazione.')
  + sez('<div class="due"><div class="riquadro">' + fili_oro(1, True) + '<h3>Un filo d\'oro</h3><p>Selezionato. Un prodotto vero, fatto bene, pronto per la ristorazione. Lo raccomandiamo.</p></div>'
        '<div class="riquadro m">' + fili_oro(2, True) + '<h3>Due fili d\'oro</h3><p>Eccellenza. Il meglio della rete: un prodotto che vale il viaggio, e un produttore su cui una cucina può contare.</p></div></div>',
        cls='bianca', occhiello='Due livelli', h2='Uno o due fili')
- + sez(passi(('Il campione', 'Il produttore lo manda a Valerio Semeraro, che lo assaggia e guarda etichetta e lotto.'),
+ + sez(passi(('Il campione', 'Il produttore ce lo manda: lo assaggiamo e guardiamo etichetta e lotto.'),
              ('La visita', 'Il check-up in azienda, con la stessa lista per tutti.'),
              ('Il giudizio', 'Uno o due fili d\'oro, scritti sulla pagina del produttore. Si rivede ogni anno.')),
        cls='scura', occhiello='Come si entra', h2='Assaggio, visita, giudizio')
@@ -492,8 +492,6 @@ filo = (capo('Il filo d\'oro', 'Il filo <em>d\'oro.</em>',
                ('La parola data', 'Consegne puntuali, quantità garantite.', True))
        + gettoni('Uguali per tutti', 'Chi non entra non compare', 'Si rivede ogni anno', 'Non è una certificazione'),
        occhiello='Cosa valutiamo', h2='Quattro cose, per tutti uguali')
- + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Arrivano i primi campioni</span></div><div><b>Poi</b><span>Le prime visite</span></div><div><b>Infine</b><span>I primi fili d\'oro</span></div></div>'
-       '<p class="piccolo" style="margin-top:16px">Nessun produttore è ancora nella guida: i primi arrivano dopo i primi assaggi.</p>', cls='bianca', occhiello='A che punto siamo', h2='La guida è in arrivo')
  + '<section class="sez verde-b"><div class="wrap fascia"><h2>Fai un prodotto vero? Mandaci il campione.</h2>' + btn('produttori.html#candidati', 'Candidati', 'miele') + '</div></section>')
 scrivi('filo-doro', 'Il filo d\'oro: la guida dei piccoli produttori | Filo Corto',
        'Il filo d\'oro è la guida di Filo Corto ai piccoli produttori italiani: assaggio, visita in azienda, uno o due fili d\'oro. Si parte dal Lazio.', filo)
