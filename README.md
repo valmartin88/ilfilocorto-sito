@@ -11,7 +11,7 @@ Rete di piccoli produttori per ristoranti, bar e hotel. Solo materie prime itali
 - `src/produttori/` – le pagine dei produttori della rete (vedi sotto).
 - `build.py` – un solo comando: riscrive le pagine principali, costruisce `site/`, la sitemap, i QR, e controlla collegamenti e parole vietate.
 - `strumenti/qr.py` – genera i codici QR senza librerie esterne.
-- `site/` – i file che il server copia sopra `public_html`. `site/foto.php` scarica una volta le foto libere e le serve dal sito;
+- `site/` – i file che il server copia sopra `public_html`. `site/foto.php` serve le foto della cartella `site/foto/` (o un disegno, dove la foto manca);
   `site/invia.php` riceve i moduli.
 - `docs/` – come lavora da solo il sito (`automazione.md`), cosa scrivere (`scaletta.md`), cosa è uscito (`registro.md`).
 
@@ -51,10 +51,12 @@ Per togliere una pagina: cancellare il file in `src/produttori/`, ricostruire, e
 
 ## Foto
 
-Le foto del sito hanno licenza libera (Unsplash) e sono elencate, con gli autori, in `crediti.html`.
-Per aggiungerne una: nome e codice in `$FOTO` e la combinazione in `$IN_USO` dentro `site/foto.php`, l'autore in
-`FOTO_CREDITI` dentro `strumenti/pagine.py`. Controllo: `https://ilfilocorto.it/foto.php?stato=1`.
-Se una foto non si scarica, il sito mostra un disegno al suo posto. Le foto dei produttori sono dei produttori.
+Le pagine chiedono le foto a `site/foto.php`, che le prende dalla cartella `site/foto/` (file `<nome>-<formato>.jpg`;
+nomi e formati sono in `$IN_USO`: `banda` 1600×640, `alto` 900×1000, `largo` 900×600). Dove il file manca esce un disegno del sito.
+Il sito non scarica niente da fuori: le foto si mettono a mano nell'archivio, già ritagliate, solo se la licenza lo permette
+(quelle scelte hanno licenza Unsplash e sono elencate in `FOTO_CREDITI` dentro `strumenti/pagine.py`).
+La pagina `crediti.html` elenca da sola gli autori delle foto presenti. Controllo: `https://ilfilocorto.it/foto.php?stato=1`.
+Le foto dei produttori sono dei produttori.
 
 ## Missione e regola sull'origine (decisa da Val il 27/11/2026)
 

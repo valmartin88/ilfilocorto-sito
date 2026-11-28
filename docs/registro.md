@@ -5,7 +5,7 @@ Serve a chi arriva dopo: ogni giro parte da zero e legge qui cosa è già succes
 
 | data | cosa | indirizzo | fonti principali | note |
 |------|------|-----------|------------------|------|
-| 2026-11-28 | Sito rifinito (testata, foto, prova, riga per il menu, QR dei produttori, pagina per i territori) e prima pagina «Per le cucine»: olio extravergine del Lazio | /per-le-cucine/olio-extravergine-del-lazio.html | Regione Lazio (produzioni di qualità), ARSIAL | Foto: scaricate dal server alla prima visita; controllare /foto.php?stato=1 |
+| 2026-11-28 | Sito rifinito (testata, foto, prova, riga per il menu, QR dei produttori, pagina per i territori) e prima pagina «Per le cucine»: olio extravergine del Lazio | /per-le-cucine/olio-extravergine-del-lazio.html | Regione Lazio (produzioni di qualità), ARSIAL | Le foto non sono ancora sul sito: il server non può scaricarle da Unsplash (richieste rifiutate), quindi vanno messe a mano in site/foto/. Intanto esce il disegno del sito. |
 | 2026-11-27 | Territorio: Tuscia | /territori/produttori-tuscia.html | ARSIAL, Regione Lazio, disciplinari | – |
 | 2026-11-26 | Guide: olio, miele, HACCP per piccoli produttori | /guide/ | norme citate nelle guide | – |
 

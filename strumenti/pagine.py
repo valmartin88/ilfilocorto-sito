@@ -50,12 +50,15 @@ I = {
  'casa': ico('<path d="M10 30L32 12l22 18"/><path d="M16 26v28h32V26"/><path d="M27 54V40h10v14" stroke="#E8692C"/>'),
 }
 
-# Foto: i nomi e i formati sono quelli di site/foto.php (se ne aggiungi una qui, aggiungila anche lì in $IN_USO).
+# Foto: i nomi e i formati sono quelli di site/foto.php. I file stanno in site/foto/<nome>-<formato>.jpg;
+# dove il file manca, foto.php mostra un disegno del sito.
 FORMATI = {'banda': (1600, 640), 'alto': (900, 1000), 'largo': (900, 600)}
 
 
 def foto(f, alt, v='banda', cls='', testo='', r=''):
     w, h = FORMATI[v]
+    if not (P.parent.parent / 'site' / 'foto' / f'{f}-{v}.jpg').exists():
+        alt = ''   # finché la foto non c'è esce un disegno decorativo: nessuna descrizione
     t = f'<figcaption>{testo}</figcaption>' if testo else ''
     return f'<figure class="foto {cls}"><img src="{r}foto.php?f={f}&amp;v={v}" alt="{alt}" width="{w}" height="{h}" decoding="async">{t}</figure>'
 
@@ -433,17 +436,27 @@ scrivi('404', 'Pagina non trovata | Filo Corto', 'Questa pagina non c\'è.',
               btn('/', 'Pagina iniziale') + btn('/produttori.html', 'Sono un produttore', '') + btn('/cucine.html', 'Ho una cucina', '') + btn('/guide/', 'Le guide', '')), extra='noindex: si\nradice: /\n')
 
 # ---------------- CREDITI DELLE FOTO ----------------
-FOTO_CREDITI = [('Olive sul ramo dopo la pioggia', 'The Now Time', 'hnkdeJJoY-A'), ('Olive verdi sul ramo', 'Janine Joles', '-8nbY8W2YEE'),
-                ('Mani con patate appena raccolte', 'JESHOOTS.COM', 'fp1x-X7DwDs'), ('Chef che impiatta', 'Urban Gyllström', 'MaWMfm-HCqQ'),
-                ('Barattoli su uno scaffale', 'Artem Kostelnyuk', 'NrqKwJ1KPo8'), ('Verdure in cassette di legno', 'Noah Buisson', 'XPltBlxfChk'),
-                ('Banco di un mercato rionale a Roma', 'Ágatha Depiné', 'sgQTbIU43Mg'), ('Civita di Bagnoregio', 'Pablo Allendes', 'aVWzRGYLjZI'),
-                ('Legumi secchi al mercato', 'Shelley Pauls', 't4X660oKiYs')]
-cred = (capo('Crediti', 'Crediti <em>delle foto.</em>', 'Le foto del sito hanno licenza libera (licenza Unsplash). Grazie a chi le ha scattate.')
- + '<section class="sez bianca"><div class="wrap prosa"><div class="scorri-x"><table><thead><tr><th>Foto</th><th>Autore</th><th>Fonte</th></tr></thead><tbody>'
- + ''.join(f'<tr><td>{t}</td><td>{a}</td><td><a href="https://unsplash.com/photos/{c}" rel="noopener">Unsplash</a></td></tr>' for t, a, c in FOTO_CREDITI)
- + '</tbody></table></div><p>Le foto sono salvate sul nostro server: chi visita il sito non si collega a servizi esterni.</p>'
-   '<p>Disegni e icone: Filo Corto. Caratteri: Archivo e Manrope (licenza SIL Open Font).</p>'
+# Le foto scelte (licenza Unsplash, uso libero): nome del file, soggetto, autore, codice della pagina su Unsplash.
+# La pagina dei crediti elenca solo quelle che sono davvero nel sito (file presenti in site/foto/).
+FOTO_CREDITI = [('ulivo', 'Olive sul ramo dopo la pioggia', 'The Now Time', 'hnkdeJJoY-A'), ('olive', 'Olive verdi sul ramo', 'Janine Joles', '-8nbY8W2YEE'),
+                ('mani', 'Mani con patate appena raccolte', 'JESHOOTS.COM', 'fp1x-X7DwDs'), ('chef', 'Chef che impiatta', 'Urban Gyllström', 'MaWMfm-HCqQ'),
+                ('barattoli', 'Barattoli su uno scaffale', 'Artem Kostelnyuk', 'NrqKwJ1KPo8'), ('cassette', 'Verdure in cassette di legno', 'Noah Buisson', 'XPltBlxfChk'),
+                ('mercato', 'Banco di un mercato rionale a Roma', 'Ágatha Depiné', 'sgQTbIU43Mg'), ('civita', 'Civita di Bagnoregio', 'Pablo Allendes', 'aVWzRGYLjZI'),
+                ('legumi', 'Legumi secchi al mercato', 'Shelley Pauls', 't4X660oKiYs')]
+CARTELLA_FOTO = P.parent.parent / 'site' / 'foto'
+presenti = [c for c in FOTO_CREDITI if any(CARTELLA_FOTO.glob(c[0] + '-*.jpg'))] if CARTELLA_FOTO.exists() else []
+if presenti:
+    elenco_foto = ('<div class="scorri-x"><table><thead><tr><th>Foto</th><th>Autore</th><th>Fonte</th></tr></thead><tbody>'
+                   + ''.join(f'<tr><td>{t}</td><td>{a}</td><td><a href="https://unsplash.com/photos/{c}" rel="noopener">Unsplash</a></td></tr>' for _, t, a, c in presenti)
+                   + '</tbody></table></div><p>Le foto hanno licenza libera (licenza Unsplash) e sono salvate sul nostro server: chi visita il sito non si collega a servizi esterni.</p>')
+    sotto = 'Grazie a chi ha scattato le foto di questo sito.'
+else:
+    elenco_foto = '<p>Per ora il sito usa solo disegni nostri. Quando aggiungeremo delle fotografie, qui troverai i nomi di chi le ha scattate.</p>'
+    sotto = 'Chi ha fatto le immagini di questo sito.'
+cred = (capo('Crediti', 'Crediti <em>delle immagini.</em>', sotto)
+ + '<section class="sez bianca"><div class="wrap prosa">' + elenco_foto
+ + '<p>Disegni e icone: Filo Corto. Caratteri: Archivo e Manrope (licenza SIL Open Font).</p>'
    '<p>Le foto delle pagine dei produttori sono dei produttori, pubblicate con il loro permesso.</p></div></section>')
-scrivi('crediti', 'Crediti delle foto | Filo Corto', 'Gli autori delle foto usate sul sito di Filo Corto.', cred, extra='noindex: si\n')
+scrivi('crediti', 'Crediti delle immagini | Filo Corto', 'Gli autori delle immagini usate sul sito di Filo Corto.', cred, extra='noindex: si\n')
 
 print('pagine scritte')

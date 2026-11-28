@@ -46,8 +46,7 @@ Il sito di Filo Corto cresce con tre lavori pianificati. Ognuno parte da zero: l
 
 - La pagina uscita nel giro precedente è online? (indirizzo nel registro)
 - `https://ilfilocorto.it/` risponde e mostra le ultime uscite?
-- `https://ilfilocorto.it/foto.php?stato=1`: se una foto «manca», aprire una volta `foto.php?prepara=1`.
-  Se manca ancora, il sito mostra un disegno al suo posto: annotarlo nel registro, non è un'emergenza.
+- Le foto: dove manca il file il sito mostra un disegno. È previsto (le foto si aggiungono a mano, vedi README): non è un'anomalia.
 - Anomalie che durano due giri di fila: scriverle a Val in una riga.
 
 ## Lavori che richiedono il computer di Val (browser con accesso già fatto)
