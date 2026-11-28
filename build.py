@@ -50,7 +50,7 @@ SCRIPT = ('<script>(function(){var t=document.querySelector(".t2"),b=t&&t.queryS
           'var el=document.querySelectorAll(".porta2,.tessera,ol.passi li,.fili>div,.elenco-guide a,.modulo,.riquadro,.manifesto p,.tappe,.gettoni,.testa,.pilastri>div,.carta-s,.passi-h>div,.cat,.foto,.diverso,.passaporto,.carta-menu");'
           'var o=new IntersectionObserver(function(v){v.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});'
           'el.forEach(function(x){if(x.getBoundingClientRect().top>innerHeight){x.classList.add("rv");o.observe(x)}})})();</script>')
-MENU = [('produttori.html', 'Produttori'), ('cucine.html', 'Cucine'), ('come-funziona.html', 'Come funziona'), ('check-up.html', 'Check-up'), ('guide/', 'Guide'), ('chi-siamo.html', 'Chi siamo')]
+MENU = [('produttori.html', 'Produttori'), ('cucine.html', 'Per chi compra'), ('come-funziona.html', 'Come funziona'), ('check-up.html', 'Check-up'), ('guide/', 'Guide'), ('chi-siamo.html', 'Chi siamo')]
 STATO = {'rete': False, 'cucine': False}   # cosa esiste già: decide alcune voci di menu e piede
 
 
@@ -145,7 +145,7 @@ def pagina(percorso, titolo, desc, corpo, r='', menu=None, schemi=(), articolo=F
           '<footer class="piede"><div class="wrap">', '<div class="col">',
           '<div><b class="w">filo corto</b><p>Dal produttore alla cucina.<br>Solo materie prime italiane.<br>Rete in costruzione: si parte dal Lazio.</p></div>',
           f'<div><h3>Produttori</h3><a href="{r}produttori.html">Entra nella rete</a>{rete}<a href="{r}check-up.html">Il check-up</a><a href="{r}prova.html">Sei pronto? Fai la prova</a><a href="{r}guide/">Guide per vendere ai ristoranti</a><a href="{r}territori/">I territori del Lazio</a></div>',
-          f'<div><h3>Cucine</h3><a href="{r}cucine.html">Ristoranti, bar e hotel</a>{cucine}<a href="{r}come-funziona.html">Come funziona</a><a href="{r}riga-menu.html">La riga per il menu</a></div>',
+          f'<div><h3>Per chi compra</h3><a href="{r}cucine.html">Ristoranti, hotel e aziende</a>{cucine}<a href="{r}come-funziona.html">Come funziona</a><a href="{r}riga-menu.html">La riga per il menu</a></div>',
           f'<div><h3>Filo Corto</h3><a href="{r}chi-siamo.html">Chi siamo</a><a href="{r}domande.html">Domande frequenti</a><a href="{r}enti.html">Per consorzi e territori</a><a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a><a href="{r}privacy.html">Informativa privacy</a><a href="{r}crediti.html">Crediti delle immagini</a></div>', '</div>',
           '<div class="fine"><span>Un progetto di Valerio Semeraro, Food Specialist e consulente HACCP – Roma</span><span>© 2026 Filo Corto</span></div>',
           '</div></footer>', SCRIPT + '</body>', '</html>', '']

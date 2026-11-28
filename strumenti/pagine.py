@@ -178,43 +178,27 @@ def stagione():
 
 
 # ---------------- HOME ----------------
+# Poche cose, nell'ordine in cui servono: cosa facciamo, per chi, perché, come, cosa ci distingue.
 home = (
  '<div class="wrap"><div class="eroe"><div class="testo"><p class="occhiello">Rete in costruzione · si parte dal Lazio</p>'
  '<h1>Il prodotto vero,<br><em>dal campo<br>alla cucina.</em></h1>'
- '<p class="grande">Gli chef chiedono: «Cosa hanno i produttori?» I produttori chiedono: «Cosa vogliono gli chef?» Filo Corto mette insieme le due risposte.</p>'
- '<div class="btns">' + btn('produttori.html', 'Sono un produttore') + btn('cucine.html', 'Ho una cucina', '') + '</div>'
+ '<p class="grande">Mettiamo in contatto piccoli produttori italiani con ristoranti, hotel, catering e aziende del food. Prima li visitiamo, poi li presentiamo. Si ordina direttamente al produttore.</p>'
+ '<div class="btns">' + btn('produttori.html', 'Sono un produttore') + btn('cucine.html', 'Cerco produttori', '') + '</div>'
  '<ul class="fiducia"><li>Solo materie prime italiane</li><li>Fattura diretta</li><li>Adesione gratuita</li></ul></div>'
- + ARTE + '</div></div>' + NASTRO
+ + ARTE + '</div></div>'
  + sez('<div class="due-porte">'
-       '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare da chi ti cerca da una vita.</h2><p>Chef, ristoratori, hotel. E chiunque cerchi il prodotto vero. Una pagina tua, gratis.</p><span class="vai">Entra nella rete →</span></a>'
-       '<a class="porta2 v" href="cucine.html"><p class="occhiello">Se cucini</p><h2>Prodotti veri, regole da cucina.</h2><p>Campione prima di ordinare. Prezzi, consegne e quantità per iscritto.</p><span class="vai">Chiedi un campione →</span></a>'
+       '<a class="porta2" href="produttori.html"><p class="occhiello">Se produci</p><h2>Fatti trovare da chi ti cerca da una vita.</h2><p>Una pagina tua, con il tuo QR, davanti a chi compra per mestiere. Gratis.</p><span class="vai">Entra nella rete →</span></a>'
+       '<a class="porta2 v" href="cucine.html"><p class="occhiello">Se compri</p><h2>Prodotti veri, regole da professionisti.</h2><p>Per chef, F&amp;B manager, direttori e buyer. Campione prima di ordinare, prezzi e consegne per iscritto.</p><span class="vai">Cerca produttori →</span></a>'
        '</div>', cls='bianca')
- + sez(MOSAICO)
- + sez('<p class="occhiello">Perché esistiamo</p><div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E nessuno li vede.</em></p><p>Il made in Italy vive solo se arriva in tavola.</p></div>'
-       '<div class="pilastri">'
-       f'<div>{I["occhio"]}<h3>Visibili</h3><p>Ogni produttore con nome, luogo e una pagina sua.</p></div>'
-       f'<div>{I["bandiera"]}<h3>Italiani</h3><p>Solo materie prime italiane. Niente import, né UE né extra UE.</p></div>'
-       f'<div>{I["casa"]}<h3>Vicini</h3><p>Dal territorio alle sue cucine. Si parte dal Lazio.</p></div></div>',
-       cls='scura')
- + sez(FILI, cls='bianca', occhiello='La differenza', h2='Meno passaggi, più valore')
- + sez(DIVERSI, occhiello='Il nostro metodo', h2='Prima la visita, poi la vetrina')
- + sez('<div class="due" style="align-items:center"><div class="testa" style="margin:0"><p class="occhiello">Il nome in tavola</p><h2>Chi mangia scopre chi l\'ha fatto.</h2>'
-       '<p class="grande">La cucina mette il QR nel menu. Chi inquadra trova il produttore: chi è, dov\'è, cosa fa.</p>'
-       '<p class="piccolo" style="margin-top:14px">Le prime pagine escono con i primi produttori.</p></div>' + PASSAPORTO + '</div>', cls='bianca', ident='nome')
- + '<!--RETE-->'
- + sez(stagione() + '<p class="piccolo" style="margin-top:18px">Cosa offre la terra in questo periodo. Il listino della rete arriverà con i primi produttori.</p>',
-       occhiello='In stagione ora', h2='Il calendario delle nostre terre')
+ + sez('<div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E chi compra non li trova.</em></p><p>Filo Corto li rende visibili e pronti per la ristorazione. Solo materie prime italiane.</p></div>',
+       cls='scura', occhiello='Perché esistiamo')
  + sez('<div class="passi-h">'
-       '<div><i>1</i><b>Il produttore si candida</b><span>Due minuti, poi scheda e check-up.</span></div>'
-       '<div><i>2</i><b>La cucina assaggia</b><span>Il campione è gratis.</span></div>'
-       '<div><i>3</i><b>Ordine e fattura diretta</b><span>Dal produttore alla cucina.</span></div></div>' + PATTI,
+       '<div><i>1</i><b>Visitiamo il produttore</b><span>Check-up in azienda, stessa lista per tutti.</span></div>'
+       '<div><i>2</i><b>Lo presentiamo</b><span>Pagina, listino e QR. Chi compra chiede un campione.</span></div>'
+       '<div><i>3</i><b>Si ordina direttamente</b><span>Il produttore consegna e fattura.</span></div></div>' + PATTI,
        cls='bianca', occhiello='Come funziona', h2='Tre passi, patti chiari')
- + sez('<div class="cat">' + ''.join(f'<div>{I[k]}<span>{n}</span></div>' for k, n in [('formaggio', 'Formaggi'), ('olio', 'Olio'), ('conserve', 'Conserve'), ('legumi', 'Legumi e cereali'), ('miele', 'Miele'), ('vino', 'Vino e birra'), ('farine', 'Farine e pasta'), ('salumi', 'Salumi')]) + '</div>'
-       + '<p style="margin-top:26px">' + btn('produttori.html#candidati', 'Produci uno di questi? Candidati') + '</p>', occhiello='Chi cerchiamo', h2='Per cominciare: prodotti che viaggiano bene')
- + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Raccogliamo le adesioni</span></div><div><b>Poi</b><span>Check-up e prime pagine dei produttori</span></div><div><b>Infine</b><span>Ordini dalle cucine</span></div></div>'
-       '<p class="piccolo" style="margin-top:16px">Nessun prodotto è ancora in vendita.</p>', cls='bianca', occhiello='A che punto siamo', h2='Rete in costruzione')
- + sez('<div class="elenco-guide"><!--ULTIME--></div>'
-       '<div class="etichette"><a href="guide/">Tutte le guide →</a><a href="territori/">I territori del Lazio →</a><!--CUCINE--></div>', occhiello='Gratis', h2='Da leggere: le ultime uscite')
+ + '<!--RETE-->'
+ + sez('<div class="elenco-guide"><!--ULTIME--></div>', occhiello='Gratis', h2='Da leggere')
  + CTA)
 scrivi('index', 'Filo Corto | Piccoli produttori italiani per ristoranti, bar e hotel',
        'Filo Corto dà visibilità ai piccoli produttori e porta il prodotto vero delle nostre terre in ristoranti, bar e hotel. Solo materie prime italiane. Si parte dal Lazio.', home,
@@ -251,8 +235,8 @@ scrivi('produttori', 'Vendere ai ristoranti: la rete dei piccoli produttori | Fi
        'Sei un piccolo produttore? Con Filo Corto ti fai trovare da ristoranti, bar e hotel: una pagina tua con il tuo QR, check-up gratuito per i primi. Si parte dal Lazio.', prod, menu='produttori.html')
 
 # ---------------- CUCINE ----------------
-cuc = (capo('Cucine', 'Prodotti veri per la <em>tua cucina.</em>',
-            'Da piccoli produttori, con materie prime italiane. E con le regole che servono a una cucina.',
+cuc = (capo('Per chi compra', 'Prodotti veri, <em>per chi compra.</em>',
+            'Per chef, F&amp;B manager, direttori e buyer di ristoranti, hotel, catering e aziende del food. Piccoli produttori, materie prime italiane, regole chiare.',
             '<div class="btns" style="margin-top:8px">' + btn('#richiesta', 'Chiedi un campione') + '</div>')
  + fascia_foto('chef', 'Uno chef che impiatta')
  + sez(tessere(('Quando arriva?', 'Giorni e orari d\'ordine scritti.', False),
@@ -269,8 +253,8 @@ cuc = (capo('Cucine', 'Prodotti veri per la <em>tua cucina.</em>',
    '<div class="modulo"><form class="form" action="invia.php" method="post">'
    '<div class="hp" aria-hidden="true"><label>Lascia vuoto<input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>'
    '<fieldset class="full radio"><legend>Vorrei</legend><label><input type="radio" name="tipo" value="campione" checked> un campione</label><label><input type="radio" name="tipo" value="ordine"> ordinare</label></fieldset>'
-   '<label>Locale<input type="text" name="nome_locale" required maxlength="120"></label>'
-   '<label>Tipo<select name="tipo_locale"><option>Ristorante</option><option>Bar</option><option>Hotel</option><option>Altro</option></select></label>'
+   '<label>Azienda o locale<input type="text" name="nome_locale" required maxlength="120"></label>'
+   '<label>Tipo<select name="tipo_locale"><option>Ristorante</option><option>Hotel</option><option>Catering</option><option>Bar</option><option>Azienda alimentare</option><option>Altro</option></select></label>'
    '<label>Referente<input type="text" name="referente" required maxlength="120" autocomplete="name"></label>'
    '<label>Email<input type="email" name="email" required maxlength="160" autocomplete="email"></label>'
    '<label class="full">Prodotti che cerchi<textarea name="prodotti" rows="3" required maxlength="2000" placeholder="Es. olio in latta, pecorino, legumi"></textarea></label>'
@@ -306,7 +290,7 @@ cf = (capo('Come funziona', 'Chi produce, chi cucina. <em>Niente in mezzo.</em>'
            'Niente magazzino, niente rivendita. Mettiamo in contatto chi produce e chi cucina, con le stesse regole per tutti.')
  + fascia_foto('mercato', 'Il banco di un mercato rionale a Roma')
  + sez('<div class="due"><div class="riquadro"><h3>Se produci</h3>' + passi(('Ti candidi', '2 minuti.'), ('Scheda e check-up', 'Poi la visita.'), ('Entri nel listino', 'E hai la tua pagina.')) +
-       '</div><div class="riquadro m"><h3>Se cucini</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>', cls='bianca')
+       '</div><div class="riquadro m"><h3>Se compri</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>', cls='bianca')
  + sez(FILI, occhiello='La differenza', h2='Meno passaggi, più valore')
  + sez(PATTI + '<p class="grande" style="margin-top:28px">Consegne: le definiamo con i primi produttori. L\'obiettivo è una consegna unica in giorni fissi.</p>'
        '<p class="piccolo" style="margin-top:12px">Non siamo un e-commerce per privati, né un grossista, né un ente di certificazione.</p>', cls='scura', occhiello='Le regole', h2='Uguali per tutti')
@@ -362,7 +346,7 @@ FC = [('Posso già ordinare?', 'Non ancora: chiedi un campione e ti scriviamo qu
       ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.')]
 dom = (capo('Domande', 'Domande <em>frequenti.</em>', 'Risposte brevi.')
  + sez(faq(*FP), cls='bianca', occhiello='Se produci', h2='Produttori')
- + sez(faq(*FC), occhiello='Se cucini', h2='Cucine') + CTA)
+ + sez(faq(*FC), occhiello='Se compri', h2='Per chi compra') + CTA)
 faqjson = json.dumps({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in FP + FC]}, ensure_ascii=False)
 scrivi('domande', 'Domande frequenti: produttori e cucine | Filo Corto',
        'Quanto costa aderire, chi fattura, cos\'è il check-up, materie prime italiane, si può già ordinare: le risposte brevi per produttori e cucine.', dom, extra=f'schema: {faqjson}\n')
@@ -427,7 +411,7 @@ riga_js = ('<script>(function(){var el=function(i){return document.getElementByI
  'if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(fatto,vecchio)}else vecchio();'
  'function vecchio(){var a=document.createElement("textarea");a.value=s;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");fatto()}catch(e){el("copiato").textContent="Seleziona la riga e copiala a mano."}document.body.removeChild(a)}});'
  'disegna()})();</script>')
-riga = (capo('<a href="cucine.html">Cucine</a> / La riga per il menu', 'Il produttore, <em>nel tuo menu.</em>',
+riga = (capo('<a href="cucine.html">Per chi compra</a> / La riga per il menu', 'Il produttore, <em>nel tuo menu.</em>',
              'Scrivi prodotto, produttore e luogo: la riga è pronta da copiare. Gratis, per qualsiasi fornitore.')
  + '<section class="sez bianca stretta"><div class="wrap due" style="align-items:center">'
    '<div class="modulo"><div class="form">'
@@ -458,7 +442,7 @@ scrivi('errore', 'Il messaggio non è partito | Filo Corto', 'Il messaggio non �
               '<a class="btn verde" href="javascript:history.back()">← Torna al modulo</a>' + btn('./', 'Pagina iniziale', '')), extra='noindex: si\n')
 scrivi('404', 'Pagina non trovata | Filo Corto', 'Questa pagina non c\'è.',
        avviso('Questa pagina <em>non c\'è.</em>', 'Forse l\'indirizzo è cambiato. Riparti da qui.',
-              btn('/', 'Pagina iniziale') + btn('/produttori.html', 'Sono un produttore', '') + btn('/cucine.html', 'Ho una cucina', '') + btn('/guide/', 'Le guide', '')), extra='noindex: si\nradice: /\n')
+              btn('/', 'Pagina iniziale') + btn('/produttori.html', 'Sono un produttore', '') + btn('/cucine.html', 'Cerco produttori', '') + btn('/guide/', 'Le guide', '')), extra='noindex: si\nradice: /\n')
 
 # ---------------- CREDITI DELLE FOTO ----------------
 # Le foto scelte (licenza Unsplash, uso libero): nome del file, soggetto, autore, codice della pagina su Unsplash.
