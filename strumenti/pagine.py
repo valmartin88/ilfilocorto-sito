@@ -188,7 +188,7 @@ home = (
  + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Raccogliamo le adesioni</span></div><div><b>Poi</b><span>Check-up e prime pagine dei produttori</span></div><div><b>Infine</b><span>Ordini dalle cucine</span></div></div>'
        '<p class="piccolo" style="margin-top:16px">Nessun prodotto è ancora in vendita.</p>', cls='bianca', occhiello='A che punto siamo', h2='Rete in costruzione')
  + sez('<div class="elenco-guide"><!--ULTIME--></div>'
-       '<div class="etichette"><a href="guide/">Tutte le guide →</a><a href="territori/">I territori del Lazio →</a></div>', occhiello='Gratis', h2='Guide per i produttori')
+       '<div class="etichette"><a href="guide/">Tutte le guide →</a><a href="territori/">I territori del Lazio →</a><!--CUCINE--></div>', occhiello='Gratis', h2='Da leggere: le ultime uscite')
  + CTA)
 scrivi('index', 'Filo Corto | Piccoli produttori italiani per ristoranti, bar e hotel',
        'Filo Corto dà visibilità ai piccoli produttori e porta il prodotto vero delle nostre terre in ristoranti, bar e hotel. Solo materie prime italiane. Si parte dal Lazio.', home,
@@ -254,7 +254,8 @@ cuc = (capo('Cucine', 'Prodotti veri per la <em>tua cucina.</em>',
  + sez(faq(('Posso già ordinare?', 'Non ancora: ti scriviamo quando c\'è un produttore pronto nella tua zona.'),
            ('Devo lasciare il mio distributore?', 'No. Ti diamo quello che lui non ha.'),
            ('Come si paga?', 'A fattura, al produttore.'),
-           ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.')), occhiello='Domande', h2='In breve'))
+           ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.'))
+       + '<div class="etichette"><a href="riga-menu.html">La riga per il menu →</a><!--CUCINE--></div>', occhiello='Domande', h2='In breve'))
 scrivi('cucine', 'Prodotti italiani per ristoranti, bar e hotel | Filo Corto',
        'Formaggi, olio, conserve, legumi e miele da piccoli produttori, con materie prime italiane, per ristoranti, bar e hotel. Campione gratis, prezzi e consegne per iscritto.', cuc, menu='cucine.html')
 

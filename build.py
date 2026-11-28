@@ -329,7 +329,7 @@ def costruisci():
     for p in (RADICE / 'src/pagine').glob('*.html'):
         d = leggi(p)
         schemi = [json.loads(d['schema'])] if d.get('schema') else []
-        corpo = d['corpo'].replace('<!--ULTIME-->', ultime).replace('<!--RETE-->', in_rete)
+        corpo = d['corpo'].replace('<!--ULTIME-->', ultime).replace('<!--RETE-->', in_rete).replace('<!--CUCINE-->', '<a href="per-le-cucine/">Il Lazio, prodotto per prodotto →</a>' if piatti else '')
         (RADICE / 'site' / (d['slug'] + '.html')).write_text(pagina(d['slug'] + '.html', d['titolo'], d['desc'], corpo, r=d.get('radice', ''), menu=d.get('menu') or None, noindex=d.get('noindex') == 'si', schemi=schemi), encoding='utf-8')
 
     righe = [f'<url><loc>{URL}{u}</loc></url>' for u in PAGINE_FISSE] + [f'<url><loc>{URL}guide/{s}.html</loc></url>' for s, _, _ in STORICHE] + [f'<url><loc>{URL}guide/{g["slug"]}.html</loc><lastmod>{g["data"]}</lastmod></url>' for g in nuove]
