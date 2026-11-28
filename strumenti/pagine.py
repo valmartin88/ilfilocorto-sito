@@ -129,8 +129,8 @@ def gettoni(*voci):
 
 PATTI = gettoni('Adesione gratuita', 'Fatturi tu', 'Margine dichiarato', 'Nessuna vendita promessa', 'Solo materie prime italiane')
 
-CTA = ('<section class="sez verde-b"><div class="wrap fascia"><h2>Produci in Italia? Partiamo dal Lazio.</h2>'
-       + btn('produttori.html#candidati', 'Candidati in 2 minuti', 'miele') + '</div></section>')
+CTA = ('<section class="sez verde-b"><div class="wrap fascia"><h2>Produci o compri? Partiamo dal Lazio.</h2>'
+       '<div class="btns">' + btn('produttori.html#candidati', 'Candidati', 'miele') + btn('cucine.html#richiesta', 'Cerca produttori', '') + '</div></div></section>')
 
 NASTRO = ('<div class="nastro" aria-hidden="true"><div>' + ''.join(f'<span>{x}</span><i></i>' for x in
           ['Formaggi', 'Olio extravergine', 'Conserve', 'Legumi', 'Miele', 'Vino', 'Birra artigianale', 'Farine', 'Pasta secca', 'Salumi'] * 2) + '</div></div>')
@@ -214,8 +214,7 @@ prod = (capo('Produttori', 'Fai un prodotto vero? <em>Fatti trovare.</em>',
  + sez('<div class="due" style="align-items:center"><div class="testa" style="margin:0"><p class="occhiello">La tua vetrina</p><h2>Una pagina tua. Un QR tuo.</h2>'
        '<p class="grande">Chi sei, cosa fai, dove sei. E un QR da mettere su etichette, cassette e menu.</p>'
        + gettoni('La scriviamo insieme', 'Esce dopo il check-up', 'Solo se la approvi', 'La togli quando vuoi') + '</div>' + PASSAPORTO + '</div>')
- + sez(passi(('Ti candidi', '2 minuti, qui sotto.'), ('Scheda e check-up', 'Prodotti, prezzi, consegne. Poi la visita.'), ('Entri nel listino', 'E hai la tua pagina.')), cls='scura', occhiello='Come si entra', h2='Tre passi')
- + sez('<div class="due"><div><p class="grande">Ti rispondiamo per email con la scheda di adesione.</p><p style="margin-top:12px">Oppure scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p></div>'
+ + sez('<div class="due"><div>' + passi(('Ti candidi', '2 minuti, qui accanto.'), ('Scheda e check-up', 'Ti mandiamo la scheda, poi la visita.'), ('La tua pagina', 'Esce solo se la approvi.')) + '<p style="margin-top:18px">Oppure scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p></div>'
    '<div class="modulo"><form class="form" action="invia.php" method="post"><input type="hidden" name="tipo" value="produttore">'
    '<div class="hp" aria-hidden="true"><label>Lascia vuoto<input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>'
    '<label>Azienda<input type="text" name="azienda" required maxlength="120" autocomplete="organization"></label>'
@@ -248,8 +247,7 @@ cuc = (capo('Per chi compra', 'Prodotti veri, <em>per chi compra.</em>',
        '<p class="grande">Una riga con nome e luogo del produttore. Per i produttori della rete, anche il QR della loro pagina.</p>'
        '<p style="margin-top:22px">' + btn('riga-menu.html', 'Scrivi la riga per il menu', '') + '</p></div>'
        '<div class="carta-menu"><b>Sul menu</b><p>Tonnarelli cacio e pepe</p><small>Pecorino: Azienda agricola Esempio, Sabina (RI)</small></div></div>')
- + sez(passi(('Dicci cosa cerchi', 'Con il modulo qui sotto.'), ('Assaggi', 'Il campione è gratis.'), ('Ordini', 'Ogni produttore consegna e fattura.')), cls='scura', occhiello='Come funziona', h2='Tre passi')
- + sez('<div class="due"><div><p class="grande">Nessun prodotto è ancora in vendita: raccogliamo le richieste e ti scriviamo quando c\'è un produttore pronto per te.</p></div>'
+ + sez('<div class="due"><div>' + passi(('Dicci cosa cerchi', 'Con il modulo qui accanto.'), ('Assaggi', 'Il campione è gratis.'), ('Ordini', 'Il produttore consegna e fattura.')) + '<p class="piccolo" style="margin-top:18px">Nessun prodotto è ancora in vendita: raccogliamo le richieste e ti scriviamo quando c\'è un produttore pronto per te.</p></div>'
    '<div class="modulo"><form class="form" action="invia.php" method="post">'
    '<div class="hp" aria-hidden="true"><label>Lascia vuoto<input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>'
    '<fieldset class="full radio"><legend>Vorrei</legend><label><input type="radio" name="tipo" value="campione" checked> un campione</label><label><input type="radio" name="tipo" value="ordine"> ordinare</label></fieldset>'
@@ -264,10 +262,10 @@ cuc = (capo('Per chi compra', 'Prodotti veri, <em>per chi compra.</em>',
  + sez(faq(('Posso già ordinare?', 'Non ancora: ti scriviamo quando c\'è un produttore pronto nella tua zona.'),
            ('Devo lasciare il mio distributore?', 'No. Ti diamo quello che lui non ha.'),
            ('Come si paga?', 'A fattura, al produttore.'),
-           ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini, per ora, sono per ristoranti, bar e hotel.'))
+           ('Vendete ai privati?', 'La vetrina dei produttori è aperta a tutti. Gli ordini sono per chi compra per mestiere: ristoranti, hotel, catering, bar e aziende del food.'))
        + '<div class="etichette"><a href="riga-menu.html">La riga per il menu →</a><!--CUCINE--></div>', occhiello='Domande', h2='In breve'))
-scrivi('cucine', 'Prodotti italiani per ristoranti, bar e hotel | Filo Corto',
-       'Formaggi, olio, conserve, legumi e miele da piccoli produttori, con materie prime italiane, per ristoranti, bar e hotel. Campione gratis, prezzi e consegne per iscritto.', cuc, menu='cucine.html')
+scrivi('cucine', 'Prodotti italiani per ristoranti, hotel e aziende | Filo Corto',
+       'Formaggi, olio, conserve, legumi e miele da piccoli produttori, con materie prime italiane, per ristoranti, hotel, catering e aziende. Campione gratis, prezzi e consegne per iscritto.', cuc, menu='cucine.html')
 
 # ---------------- CHECK-UP ----------------
 chk = (capo('Check-up', 'Sei pronto <em>per le cucine?</em>',
@@ -286,14 +284,13 @@ scrivi('check-up', 'Check-up per piccoli produttori: pronto per ristoranti e hot
        'Visita in azienda, lista uguale per tutti, rapporto scritto: documenti, origine, lotti, etichette, consegne. Gratis per i primi produttori.', chk, menu='check-up.html')
 
 # ---------------- COME FUNZIONA ----------------
-cf = (capo('Come funziona', 'Chi produce, chi cucina. <em>Niente in mezzo.</em>',
-           'Niente magazzino, niente rivendita. Mettiamo in contatto chi produce e chi cucina, con le stesse regole per tutti.')
+cf = (capo('Come funziona', 'Chi produce, chi compra. <em>Niente in mezzo.</em>',
+           'Niente magazzino, niente rivendita. Mettiamo in contatto chi produce e chi compra per mestiere, con le stesse regole per tutti.')
  + fascia_foto('mercato', 'Il banco di un mercato rionale a Roma')
  + sez('<div class="due"><div class="riquadro"><h3>Se produci</h3>' + passi(('Ti candidi', '2 minuti.'), ('Scheda e check-up', 'Poi la visita.'), ('Entri nel listino', 'E hai la tua pagina.')) +
-       '</div><div class="riquadro m"><h3>Se compri</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>', cls='bianca')
+       '</div><div class="riquadro m"><h3>Se compri</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>' + PATTI
+       + '<p class="piccolo" style="margin-top:18px">Consegne: le definiamo con i primi produttori, l\'obiettivo è una consegna unica in giorni fissi. Non siamo un e-commerce per privati, né un grossista, né un ente di certificazione.</p>', cls='bianca')
  + sez(FILI, occhiello='La differenza', h2='Meno passaggi, più valore')
- + sez(PATTI + '<p class="grande" style="margin-top:28px">Consegne: le definiamo con i primi produttori. L\'obiettivo è una consegna unica in giorni fissi.</p>'
-       '<p class="piccolo" style="margin-top:12px">Non siamo un e-commerce per privati, né un grossista, né un ente di certificazione.</p>', cls='scura', occhiello='Le regole', h2='Uguali per tutti')
  + IA + CTA)
 scrivi('come-funziona', 'Come funziona Filo Corto | Filo Corto',
        'Il produttore si candida e fa il check-up, la cucina assaggia e ordina, il produttore consegna e fattura. Regole uguali per tutti, solo materie prime italiane.', cf, menu='come-funziona.html')
