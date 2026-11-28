@@ -20,7 +20,7 @@ sys.path.insert(0, str(RADICE / 'strumenti'))
 import qr  # noqa: E402
 
 URL = 'https://ilfilocorto.it/'
-CSS_V = '10'
+CSS_V = '11'
 MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
 AUTORE = {'@type': 'Person', 'name': 'Valerio Semeraro', 'jobTitle': 'Food Specialist e consulente HACCP'}
 EDITORE = {'@type': 'Organization', 'name': 'Filo Corto', 'logo': {'@type': 'ImageObject', 'url': URL + 'icona.png'}}
@@ -35,7 +35,7 @@ STORICHE = [
 ]
 # File che stanno solo sul server (non nel repository): il controllo dei collegamenti li considera presenti.
 SOLO_SERVER = {'guide/' + s + '.html' for s, _, _ in STORICHE} | {'fonts/archivo.woff2', 'fonts/manrope.woff2'}
-PAGINE_FISSE = ['', 'produttori.html', 'cucine.html', 'come-funziona.html', 'check-up.html', 'prova.html', 'riga-menu.html', 'guide/', 'domande.html', 'chi-siamo.html', 'enti.html', 'privacy.html']
+PAGINE_FISSE = ['', 'produttori.html', 'cucine.html', 'come-funziona.html', 'check-up.html', 'prova.html', 'riga-menu.html', 'guide/', 'domande.html', 'chi-siamo.html', 'filo-doro.html', 'enti.html', 'privacy.html']
 
 LOGO = '<svg width="46" height="46" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="38" r="16.85" fill="#F2F4F0" stroke="#E8692C" stroke-width="6.3"/><circle cx="30" cy="38" r="5.85" fill="#12302B"/><path d="M30 21 C 30 11, 37 5, 48 5 C 48 15, 41 21, 30 21 Z" fill="#2f5d3a"/></svg>'
 ORG = {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Filo Corto', 'url': URL, 'logo': URL + 'icona.png', 'email': 'info@ilfilocorto.it', 'areaServed': 'Lazio',
@@ -144,7 +144,7 @@ def pagina(percorso, titolo, desc, corpo, r='', menu=None, schemi=(), articolo=F
     h += [f'<a class="btn verde" href="{r}produttori.html#candidati">Candidati</a>', '</nav>', '</div></header>', '<main id="contenuto">', corpo, '</main>',
           '<footer class="piede"><div class="wrap">', '<div class="col">',
           '<div><b class="w">filo corto</b><p>Dal produttore alla cucina.<br>Solo materie prime italiane.<br>Rete in costruzione: si parte dal Lazio.</p></div>',
-          f'<div><h3>Produttori</h3><a href="{r}produttori.html">Entra nella rete</a>{rete}<a href="{r}check-up.html">Il check-up</a><a href="{r}prova.html">Sei pronto? Fai la prova</a><a href="{r}guide/">Guide per vendere ai ristoranti</a><a href="{r}territori/">I territori del Lazio</a></div>',
+          f'<div><h3>Produttori</h3><a href="{r}produttori.html">Entra nella rete</a>{rete}<a href="{r}check-up.html">Il check-up</a><a href="{r}filo-doro.html">Il filo d’oro</a><a href="{r}prova.html">Sei pronto? Fai la prova</a><a href="{r}guide/">Guide per vendere ai ristoranti</a><a href="{r}territori/">I territori del Lazio</a></div>',
           f'<div><h3>Per chi compra</h3><a href="{r}cucine.html">Ristoranti, hotel e aziende</a>{cucine}<a href="{r}come-funziona.html">Come funziona</a><a href="{r}riga-menu.html">La riga per il menu</a></div>',
           f'<div><h3>Filo Corto</h3><a href="{r}chi-siamo.html">Chi siamo</a><a href="{r}domande.html">Domande frequenti</a><a href="{r}enti.html">Per consorzi e territori</a><a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a><a href="{r}privacy.html">Informativa privacy</a><a href="{r}crediti.html">Crediti delle immagini</a></div>', '</div>',
           '<div class="fine"><span>Un progetto <a href="https://sicurofood.com" rel="noopener">SicuroFood</a></span><span>© 2026 Filo Corto</span></div>',

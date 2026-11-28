@@ -247,6 +247,8 @@ details p{padding:0 0 20px;color:var(--testo);max-width:760px}
 .passaporto .dx svg{width:min(200px,82%);height:auto;border:2px solid var(--ink);background:#fff;padding:6px}
 .passaporto .dx span{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 
+.segno{width:120px;height:auto;display:block;margin-bottom:12px}.segno.grande{width:170px}
+
 /* ---------- 8. Moduli ---------- */
 .modulo{border:3px solid var(--ink);background:var(--bianco);color:var(--ink);padding:30px;box-shadow:9px 9px 0 var(--ink);display:flex;flex-direction:column;gap:18px}
 .verde-b .modulo{box-shadow:9px 9px 0 var(--miele-chiaro)}
@@ -340,6 +342,7 @@ th{background:var(--ink);color:var(--carta);font-size:12.5px;letter-spacing:.1em
 .piede b.w{font:800 30px/1 Manrope,var(--f);letter-spacing:-.02em;color:var(--miele-chiaro);display:block;margin-bottom:10px}
 .piede h3{font-size:13px;letter-spacing:.16em;color:var(--miele-chiaro);margin-bottom:12px}
 .piede a{color:var(--carta);display:block;padding:4px 0}
+.piede .fine a{display:inline;padding:0}
 .piede .fine{margin-top:44px;padding-top:20px;border-top:1px solid #4a514c;color:#c9cdc7;font-size:13.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
 /* ---------- 12 bis. Compatibilità con le pagine pubblicate prima ---------- */

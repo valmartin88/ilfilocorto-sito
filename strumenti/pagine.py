@@ -195,7 +195,8 @@ home = (
  + sez('<div class="passi-h">'
        '<div><i>1</i><b>Assaggiamo il campione</b><span>Il produttore ce lo manda. Se ci convince, entra.</span></div>'
        '<div><i>2</i><b>Visitiamo e presentiamo</b><span>Check-up in azienda, poi pagina, listino e QR.</span></div>'
-       '<div><i>3</i><b>Si ordina direttamente</b><span>Il produttore consegna e fattura.</span></div></div>' + PATTI,
+       '<div><i>3</i><b>Si ordina direttamente</b><span>Il produttore consegna e fattura.</span></div></div>' + PATTI
+       + '<p style="margin-top:22px"><a href="filo-doro.html">I migliori entrano nel filo d\'oro, la nostra guida →</a></p>',
        cls='bianca', occhiello='Come funziona', h2='Tre passi, patti chiari')
  + '<!--RETE-->'
  + sez('<div class="elenco-guide"><!--ULTIME--></div>', occhiello='Gratis', h2='Da leggere')
@@ -229,7 +230,7 @@ prod = (capo('Produttori', 'Fai un prodotto vero? <em>Fatti trovare.</em>',
            ('Mi garantite vendite?', 'No. Scelgono le cucine: noi ti presentiamo bene.'),
            ('Come guadagnate?', 'Con un margine sulle vendite, scritto prima di ogni ordine.'),
            ('Il check-up è una certificazione?', 'No. È una valutazione per la rete. Non sostituisce i controlli ufficiali.')) +
-       '<div class="etichette"><a href="domande.html">Tutte le domande →</a><a href="guide/">Le guide →</a></div>', occhiello='Domande', h2='In breve'))
+       '<div class="etichette"><a href="filo-doro.html">Il filo d\'oro →</a><a href="domande.html">Tutte le domande →</a><a href="guide/">Le guide →</a></div>', occhiello='Domande', h2='In breve'))
 scrivi('produttori', 'Vendere ai ristoranti: la rete dei piccoli produttori | Filo Corto',
        'Sei un piccolo produttore? Con Filo Corto ti fai trovare da ristoranti, bar e hotel: una pagina tua con il tuo QR, check-up gratuito per i primi. Si parte dal Lazio.', prod, menu='produttori.html')
 
@@ -464,5 +465,37 @@ cred = (capo('Crediti', 'Crediti <em>delle immagini.</em>', sotto)
  + '<p>Disegni e icone: Filo Corto. Caratteri: Archivo e Manrope (licenza SIL Open Font).</p>'
    '<p>Le foto delle pagine dei produttori sono dei produttori, pubblicate con il loro permesso.</p></div></section>')
 scrivi('crediti', 'Crediti delle immagini | Filo Corto', 'Gli autori delle immagini usate sul sito di Filo Corto.', cred, extra='noindex: si\n')
+
+# ---------------- IL FILO D'ORO ----------------
+# La guida dei produttori della rete: un giudizio firmato, non una certificazione. Due livelli, contati in fili.
+def fili_oro(n, grande=False):
+    """Il segno del filo d'oro: n nodi (1 o 2) su un filo dorato."""
+    w = 150 if n == 1 else 190
+    nodi = ''.join(f'<circle cx="{x}" cy="30" r="13" fill="#e9b565" stroke="#1f2420" stroke-width="3.5"/><circle cx="{x}" cy="30" r="4.5" fill="#1f2420"/>' for x in ([75] if n == 1 else [70, 120]))
+    cls = 'segno grande' if grande else 'segno'
+    return (f'<svg class="{cls}" viewBox="0 0 {w} 60" role="img" aria-label="{"Un filo" if n == 1 else "Due fili"} d\'oro">'
+            f'<path d="M4 30 C 30 10, 50 50, {w/2} 30 S {w-30} 10, {w-4} 30" fill="none" stroke="#c9862b" stroke-width="5" stroke-linecap="round"/>{nodi}</svg>')
+
+
+filo = (capo('Il filo d\'oro', 'Il filo <em>d\'oro.</em>',
+             'La nostra guida dei piccoli produttori. Entra solo chi supera l\'assaggio e la visita. Firmata da Valerio Semeraro, chef.')
+ + sez('<div class="due"><div class="riquadro">' + fili_oro(1, True) + '<h3>Un filo d\'oro</h3><p>Selezionato. Un prodotto vero, fatto bene, pronto per la ristorazione. Lo raccomandiamo.</p></div>'
+       '<div class="riquadro m">' + fili_oro(2, True) + '<h3>Due fili d\'oro</h3><p>Eccellenza. Il meglio della rete: un prodotto che vale il viaggio, e un produttore su cui una cucina può contare.</p></div></div>',
+       cls='bianca', occhiello='Due livelli', h2='Uno o due fili')
+ + sez(passi(('Il campione', 'Il produttore lo manda a Valerio Semeraro, che lo assaggia e guarda etichetta e lotto.'),
+             ('La visita', 'Il check-up in azienda, con la stessa lista per tutti.'),
+             ('Il giudizio', 'Uno o due fili d\'oro, scritti sulla pagina del produttore. Si rivede ogni anno.')),
+       cls='scura', occhiello='Come si entra', h2='Assaggio, visita, giudizio')
+ + sez(tessere(('Il gusto', 'Il prodotto si assaggia, sempre.', False),
+               ('La materia prima', 'Solo materie prime italiane.', True),
+               ('La serietà', 'Etichetta, lotto e documenti in ordine.', False),
+               ('La parola data', 'Consegne puntuali, quantità garantite.', True))
+       + gettoni('Uguali per tutti', 'Chi non entra non compare', 'Si rivede ogni anno', 'Non è una certificazione'),
+       occhiello='Cosa valutiamo', h2='Quattro cose, per tutti uguali')
+ + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Arrivano i primi campioni</span></div><div><b>Poi</b><span>Le prime visite</span></div><div><b>Infine</b><span>I primi fili d\'oro</span></div></div>'
+       '<p class="piccolo" style="margin-top:16px">Nessun produttore è ancora nella guida: i primi arrivano dopo i primi assaggi.</p>', cls='bianca', occhiello='A che punto siamo', h2='La guida è in arrivo')
+ + '<section class="sez verde-b"><div class="wrap fascia"><h2>Fai un prodotto vero? Mandaci il campione.</h2>' + btn('produttori.html#candidati', 'Candidati', 'miele') + '</div></section>')
+scrivi('filo-doro', 'Il filo d\'oro: la guida dei piccoli produttori | Filo Corto',
+       'Il filo d\'oro è la guida di Filo Corto ai piccoli produttori italiani: assaggio, visita in azienda, uno o due fili d\'oro. Si parte dal Lazio.', filo)
 
 print('pagine scritte')
