@@ -322,8 +322,9 @@ def costruisci():
     piatti = carica('cucine', lambda d: d['h1'])
     rete = carica('produttori', lambda d: d['nome'].lower())
     for d in rete:
-        if not d.get('consenso') or not re.match(r'\d{4}-\d{2}-\d{2}$', d['consenso']):
-            raise SystemExit(f'Manca la data del consenso scritto per {d["slug"]}: la pagina non si pubblica.')
+        for campo, cosa in (('campione', 'del campione approvato da Val'), ('consenso', 'del consenso scritto')):
+            if not re.match(r'\d{4}-\d{2}-\d{2}$', d.get(campo, '')):
+                raise SystemExit(f'Manca la data {cosa} per {d["slug"]}: la pagina non si pubblica.')
     STATO['rete'], STATO['cucine'] = bool(rete), bool(piatti)
 
     guide(nuove)

@@ -182,7 +182,7 @@ def stagione():
 home = (
  '<div class="wrap"><div class="eroe"><div class="testo"><p class="occhiello">Rete in costruzione · si parte dal Lazio</p>'
  '<h1>Il prodotto vero,<br><em>dal campo<br>alla cucina.</em></h1>'
- '<p class="grande">Mettiamo in contatto piccoli produttori italiani con ristoranti, hotel, catering e aziende del food. Prima li visitiamo, poi li presentiamo. Si ordina direttamente al produttore.</p>'
+ '<p class="grande">Mettiamo in contatto piccoli produttori italiani con ristoranti, hotel, catering e aziende del food. Prima assaggiamo i loro prodotti e li visitiamo, poi li presentiamo. Si ordina direttamente al produttore.</p>'
  '<div class="btns">' + btn('produttori.html', 'Sono un produttore') + btn('cucine.html', 'Cerco produttori', '') + '</div>'
  '<ul class="fiducia"><li>Solo materie prime italiane</li><li>Fattura diretta</li><li>Adesione gratuita</li></ul></div>'
  + ARTE + '</div></div>'
@@ -193,8 +193,8 @@ home = (
  + sez('<div class="manifesto"><p>Migliaia di piccoli produttori fanno cose straordinarie.<br><em>E chi compra non li trova.</em></p><p>Filo Corto li rende visibili e pronti per la ristorazione. Solo materie prime italiane.</p></div>',
        cls='scura', occhiello='Perché esistiamo')
  + sez('<div class="passi-h">'
-       '<div><i>1</i><b>Visitiamo il produttore</b><span>Check-up in azienda, stessa lista per tutti.</span></div>'
-       '<div><i>2</i><b>Lo presentiamo</b><span>Pagina, listino e QR. Chi compra chiede un campione.</span></div>'
+       '<div><i>1</i><b>Assaggiamo il campione</b><span>Il produttore ce lo manda. Se ci convince, entra.</span></div>'
+       '<div><i>2</i><b>Visitiamo e presentiamo</b><span>Check-up in azienda, poi pagina, listino e QR.</span></div>'
        '<div><i>3</i><b>Si ordina direttamente</b><span>Il produttore consegna e fattura.</span></div></div>' + PATTI,
        cls='bianca', occhiello='Come funziona', h2='Tre passi, patti chiari')
  + '<!--RETE-->'
@@ -213,8 +213,8 @@ prod = (capo('Produttori', 'Fai un prodotto vero? <em>Fatti trovare.</em>',
        '</div><div class="riquadro m"><h3>Ti chiediamo</h3>' + punti('Materie prime italiane', 'Giorni di consegna fissi', 'Prezzi e quantità per iscritto', 'Documenti e lotti in ordine') + '</div></div>' + PATTI, cls='bianca')
  + sez('<div class="due" style="align-items:center"><div class="testa" style="margin:0"><p class="occhiello">La tua vetrina</p><h2>Una pagina tua. Un QR tuo.</h2>'
        '<p class="grande">Chi sei, cosa fai, dove sei. E un QR da mettere su etichette, cassette e menu.</p>'
-       + gettoni('La scriviamo insieme', 'Esce dopo il check-up', 'Solo se la approvi', 'La togli quando vuoi') + '</div>' + PASSAPORTO + '</div>')
- + sez('<div class="due"><div>' + passi(('Ti candidi', '2 minuti, qui accanto.'), ('Scheda e check-up', 'Ti mandiamo la scheda, poi la visita.'), ('La tua pagina', 'Esce solo se la approvi.')) + '<p style="margin-top:18px">Oppure scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p></div>'
+       + gettoni('La scriviamo insieme', 'Esce dopo campione e check-up', 'Solo se la approvi', 'La togli quando vuoi') + '</div>' + PASSAPORTO + '</div>')
+ + sez('<div class="due"><div>' + passi(('Ti candidi', '2 minuti, qui accanto.'), ('Ci mandi un campione', 'Lo assaggiamo e guardiamo etichetta e lotto. Se ci convince, entri.'), ('Check-up e pagina', 'La visita in azienda, poi la tua pagina, se la approvi.')) + '<p style="margin-top:18px">Oppure scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p></div>'
    '<div class="modulo"><form class="form" action="invia.php" method="post"><input type="hidden" name="tipo" value="produttore">'
    '<div class="hp" aria-hidden="true"><label>Lascia vuoto<input type="text" name="sito_web" tabindex="-1" autocomplete="off"></label></div>'
    '<label>Azienda<input type="text" name="azienda" required maxlength="120" autocomplete="organization"></label>'
@@ -287,13 +287,13 @@ scrivi('check-up', 'Check-up per piccoli produttori: pronto per ristoranti e hot
 cf = (capo('Come funziona', 'Chi produce, chi compra. <em>Niente in mezzo.</em>',
            'Niente magazzino, niente rivendita. Mettiamo in contatto chi produce e chi compra per mestiere, con le stesse regole per tutti.')
  + fascia_foto('mercato', 'Il banco di un mercato rionale a Roma')
- + sez('<div class="due"><div class="riquadro"><h3>Se produci</h3>' + passi(('Ti candidi', '2 minuti.'), ('Scheda e check-up', 'Poi la visita.'), ('Entri nel listino', 'E hai la tua pagina.')) +
+ + sez('<div class="due"><div class="riquadro"><h3>Se produci</h3>' + passi(('Ti candidi', '2 minuti.'), ('Mandi un campione', 'Lo assaggiamo noi: se convince, entri.'), ('Check-up e pagina', 'La visita, poi la vetrina.')) +
        '</div><div class="riquadro m"><h3>Se compri</h3>' + passi(('Scegli', 'Dal listino.'), ('Assaggi', 'Campione gratis.'), ('Ordini', 'Fattura diretta.')) + '</div></div>' + PATTI
        + '<p class="piccolo" style="margin-top:18px">Consegne: le definiamo con i primi produttori, l\'obiettivo è una consegna unica in giorni fissi. Non siamo un e-commerce per privati, né un grossista, né un ente di certificazione.</p>', cls='bianca')
  + sez(FILI, occhiello='La differenza', h2='Meno passaggi, più valore')
  + IA + CTA)
 scrivi('come-funziona', 'Come funziona Filo Corto | Filo Corto',
-       'Il produttore si candida e fa il check-up, la cucina assaggia e ordina, il produttore consegna e fattura. Regole uguali per tutti, solo materie prime italiane.', cf, menu='come-funziona.html')
+       'Il produttore si candida, manda un campione e fa il check-up; chi compra assaggia e ordina, il produttore consegna e fattura. Regole uguali per tutti, solo materie prime italiane.', cf, menu='come-funziona.html')
 
 # ---------------- CHI SIAMO ----------------
 cs = (capo('Chi siamo', 'Appassionati <em>del cibo vero.</em>',
@@ -329,9 +329,10 @@ FP = [('Aderire costa?', 'No. Gratis, senza impegno. Esci quando vuoi.'),
       ('Quanto guadagna Filo Corto?', 'Un margine sulle vendite, scritto nella scheda prima di ogni ordine e dichiarato anche alle cucine.'),
       ('Chi fattura?', 'Tu, il produttore. La cucina paga te.'),
       ('Devo consegnare io?', 'Lo decidiamo con i primi produttori. L\'obiettivo è una consegna unica.'),
+      ('Entrano tutti?', 'No. Prima ci mandi un campione: lo assaggiamo e guardiamo etichetta e lotto. Se ci convince, facciamo il check-up in azienda e pubblichiamo la tua pagina. Dove mandarlo te lo diciamo noi per email.'),
       ('Cos\'è il check-up?', 'Una visita con una lista uguale per tutti: documenti, origine, lotti, etichette, consegne. Gratis per i primi. Non è una certificazione.'),
       ('Usate l\'intelligenza artificiale?', 'Sì, per il lavoro d\'ufficio: scrivere le guide partendo da fonti ufficiali, preparare le bozze delle pagine, tenere in ordine ricerche e resoconti. Il check-up lo fa una persona, e la pagina di un produttore esce solo se lui la approva.'),
-      ('Cos\'è la pagina con il QR?', 'Ogni produttore della rete può avere una pagina sul sito e un QR che porta lì: si mette su etichette, cassette e menu. Esce dopo il check-up e solo se la approvi.'),
+      ('Cos\'è la pagina con il QR?', 'Ogni produttore della rete può avere una pagina sul sito e un QR che porta lì: si mette su etichette, cassette e menu. Esce dopo campione e check-up, e solo se la approvi.'),
       ('Materie prime estere?', 'No. Solo materie prime coltivate o allevate in Italia, niente import UE o extra UE. Lo guardiamo al check-up.'),
       ('Produco fuori dal Lazio.', 'Partiamo dal Lazio. Scrivici lo stesso: ti ricontattiamo quando la rete si allarga.'),
       ('Quali prodotti cercate?', 'Per iniziare, quelli che si conservano: formaggi stagionati, olio, conserve, legumi, miele, vino e birra, farine, pasta, salumi.')]

@@ -34,10 +34,11 @@ Il dettaglio è in `docs/automazione.md`.
 
 ## Pagine dei produttori della rete
 
-Si pubblica la pagina di un produttore SOLO quando ci sono tutte e tre le cose:
+Si pubblica la pagina di un produttore SOLO quando ci sono tutte e quattro le cose:
 1. scheda di adesione compilata, con la casella «Vorrei la pagina sul sito»;
-2. check-up in azienda fatto;
-3. testo approvato per iscritto dal produttore (anche una risposta email «va bene»): la data va nel campo `consenso`.
+2. campione arrivato a Val, assaggiato e approvato da lui (decisione di Val del 28/11/2026: decide lui chi entra): la data va nel campo `campione`;
+3. check-up in azienda fatto;
+4. testo approvato per iscritto dal produttore (anche una risposta email «va bene»): la data va nel campo `consenso`.
 
 Come si fa: copiare `esempi/produttore-modello.html` in `src/produttori/<nome-azienda>.html`, compilarlo,
 mettere le foto (JPG, larghe al massimo 1600 px) in `site/produttori/foto/`, eseguire `python3 build.py`, commit e push.
