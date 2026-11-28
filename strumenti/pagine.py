@@ -130,10 +130,18 @@ PASSAPORTO = ('<div class="passaporto"><span class="es">Esempio</span><div class
               '<dt>Quando</dt><dd>Olio nuovo da novembre</dd><dt>Consegne</dt><dd>Martedì e venerdì</dd></dl></div>'
               '<div class="dx">' + qr.svg(SITO + 'produttori.html') + '<span>Inquadra: ecco chi lo fa</span></div></div>')
 
-DIVERSI = ('<div class="diversi">'
+DIVERSI = ('<div class="diversi quattro">'
            '<div class="diverso"><h3>Entriamo in azienda</h3><p>Un check-up vero: una visita, una lista uguale per tutti, un rapporto scritto.</p><a class="et" href="check-up.html">Il check-up →</a></div>'
            '<div class="diverso"><h3>Il prodotto ha un nome</h3><p>Ogni produttore ha la sua pagina e il suo QR. Dal campo al menu.</p><a class="et" href="#nome">La pagina del produttore →</a></div>'
-           '<div class="diverso"><h3>Parliamo da cucina</h3><p>Listino, lotti, allergeni, giorni di consegna: scritti come servono a chi ordina ogni giorno.</p><a class="et" href="cucine.html">Per le cucine →</a></div></div>')
+           '<div class="diverso"><h3>Parliamo da cucina</h3><p>Listino, lotti, allergeni, giorni di consegna: scritti come servono a chi ordina ogni giorno.</p><a class="et" href="cucine.html">Per le cucine →</a></div>'
+           '<div class="diverso"><h3>L\'IA lavora in ufficio</h3><p>Guide, bozze e ricerche le prepara l\'intelligenza artificiale. Le visite e le scelte restano a una persona.</p><a class="et" href="come-funziona.html#ia">Come la usiamo →</a></div></div>')
+
+# Dove usiamo l'intelligenza artificiale: detta per quello che fa. Le visite e le scelte restano a una persona.
+IA = ('<section class="sez bianca" id="ia"><div class="wrap"><div class="testa"><p class="occhiello">Intelligenza artificiale</p><h2>L\'IA lavora in ufficio. In azienda viene una persona.</h2></div>'
+      '<div class="due"><div class="riquadro"><h3>Cosa fa l\'IA</h3><ul class="punti"><li>Scrive le guide del sito, partendo da fonti ufficiali</li><li>Prepara la bozza della pagina di ogni produttore</li><li>Tiene in ordine ricerche, contatti e resoconti</li></ul></div>'
+      '<div class="riquadro m"><h3>Cosa fa una persona</h3><ul class="punti"><li>Il check-up in azienda</li><li>Decide chi entra nella rete</li><li>Dà l\'ok a ogni invito, prima che parta</li></ul></div></div>'
+      '<ul class="gettoni"><li>La pagina di un produttore esce solo se lui la approva</li><li>L\'IA non decide chi entra</li><li>Trovi un errore? Scrivici</li></ul>'
+      '<p class="piccolo" style="margin-top:18px">Delle guide risponde Valerio Semeraro: se trovi un errore scrivi a <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a> e lo correggiamo.</p></div></section>')
 
 
 STAGIONI = [
@@ -287,7 +295,7 @@ cf = (capo('Come funziona', 'Chi produce, chi cucina. <em>Niente in mezzo.</em>'
  + sez(FILI, occhiello='La differenza', h2='Meno passaggi, più valore')
  + sez(PATTI + '<p class="grande" style="margin-top:28px">Consegne: le definiamo con i primi produttori. L\'obiettivo è una consegna unica in giorni fissi.</p>'
        '<p class="piccolo" style="margin-top:12px">Non siamo un e-commerce per privati, né un grossista, né un ente di certificazione.</p>', cls='scura', occhiello='Le regole', h2='Uguali per tutti')
- + CTA)
+ + IA + CTA)
 scrivi('come-funziona', 'Come funziona Filo Corto | Filo Corto',
        'Il produttore si candida e fa il check-up, la cucina assaggia e ordina, il produttore consegna e fattura. Regole uguali per tutti, solo materie prime italiane.', cf, menu='come-funziona.html')
 
@@ -299,7 +307,7 @@ cs = (capo('Chi siamo', 'Appassionati <em>del cibo vero.</em>',
        '<p>Tra chi produce e chi cucina, oggi, ci sono troppi passaggi. Noi ne lasciamo uno.</p></div>'
        + tessere(('Si sa chi lo fa', 'Nome e indirizzo.', False), ('È italiano', 'Materie prime italiane.', True),
                  ('Si racconta', 'Una storia vera, per il menu.', False), ('È in regola', 'Documenti e lotti.', True)), cls='scura', occhiello='Cibo vero', h2='Cosa intendiamo')
- + sez('<p class="grande">Valerio Semeraro, Food Specialist e consulente HACCP, segue le adesioni e fa i check-up. <a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p>', cls='bianca', occhiello='Chi cura il progetto', h2='Valerio Semeraro')
+ + sez('<p class="grande">Valerio Semeraro, Food Specialist e consulente HACCP, segue le adesioni e fa i check-up. Nel lavoro d\'ufficio lo aiuta l\'intelligenza artificiale: <a href="come-funziona.html#ia">ecco come</a>.</p><p style="margin-top:14px"><a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a></p>', cls='bianca', occhiello='Chi cura il progetto', h2='Valerio Semeraro')
  + CTA)
 scrivi('chi-siamo', 'Chi siamo: appassionati del cibo vero | Filo Corto',
        'Filo Corto nasce dalle cucine: appassionati del cibo vero che vogliono riportare il prodotto delle nostre terre in ristoranti, bar e hotel.', cs, menu='chi-siamo.html')
@@ -311,7 +319,8 @@ enti = (capo('Per i territori', 'Portiamo i vostri produttori <em>nelle cucine.<
  + fascia_foto('civita', 'Civita di Bagnoregio, in provincia di Viterbo')
  + sez('<div class="due"><div class="riquadro"><h3>Cosa mettiamo noi</h3>' + punti('Una pagina per ogni produttore, con il suo QR', 'Il check-up in azienda, gratuito per i primi produttori', '<a href="territori/">Una pagina dedicata al territorio</a>', '<a href="guide/">Guide gratuite</a> per vendere alla ristorazione') +
        '</div><div class="riquadro m"><h3>Cosa chiediamo</h3>' + punti('Far conoscere la rete ai vostri produttori', 'Dirci quali prodotti raccontano il territorio', 'Nessun contributo economico') + '</div></div>'
-       + gettoni('Nessun costo', 'Fattura diretta del produttore', 'Nessuna vendita promessa', 'Solo materie prime italiane'), cls='bianca')
+       + gettoni('Nessun costo', 'Fattura diretta del produttore', 'Nessuna vendita promessa', 'Solo materie prime italiane')
+       + '<p class="piccolo" style="margin-top:18px">Come lavoriamo: le visite le fa una persona, nel lavoro d\'ufficio ci aiuta l\'intelligenza artificiale. <a href="come-funziona.html#ia">Ecco come</a>.</p>', cls='bianca')
  + sez('<div class="tappe"><div class="ora"><b>Oggi</b><span>Raccogliamo le adesioni nel Lazio</span></div><div><b>Cerchiamo</b><span>Un primo territorio con cui partire</span></div><div><b>Poi</b><span>Check-up, pagine dei produttori, cucine</span></div></div>'
        '<p class="piccolo" style="margin-top:16px">Siamo all\'inizio e lo diciamo. Nessun prodotto è ancora in vendita.</p>', occhiello='A che punto siamo', h2='Un territorio per cominciare')
  + sez('<div class="fascia"><h2>Parliamone.</h2><a class="btn miele" href="mailto:info@ilfilocorto.it?subject=Filo%20Corto%20e%20il%20nostro%20territorio">info@ilfilocorto.it →</a></div>', cls='verde-b'))
@@ -325,6 +334,7 @@ FP = [('Aderire costa?', 'No. Gratis, senza impegno. Esci quando vuoi.'),
       ('Chi fattura?', 'Tu, il produttore. La cucina paga te.'),
       ('Devo consegnare io?', 'Lo decidiamo con i primi produttori. L\'obiettivo è una consegna unica.'),
       ('Cos\'è il check-up?', 'Una visita con una lista uguale per tutti: documenti, origine, lotti, etichette, consegne. Gratis per i primi. Non è una certificazione.'),
+      ('Usate l\'intelligenza artificiale?', 'Sì, per il lavoro d\'ufficio: scrivere le guide partendo da fonti ufficiali, preparare le bozze delle pagine, tenere in ordine ricerche e resoconti. Il check-up lo fa una persona, e la pagina di un produttore esce solo se lui la approva.'),
       ('Cos\'è la pagina con il QR?', 'Ogni produttore della rete può avere una pagina sul sito e un QR che porta lì: si mette su etichette, cassette e menu. Esce dopo il check-up e solo se la approvi.'),
       ('Materie prime estere?', 'No. Solo materie prime coltivate o allevate in Italia, niente import UE o extra UE. Lo guardiamo al check-up.'),
       ('Produco fuori dal Lazio.', 'Partiamo dal Lazio. Scrivici lo stesso: ti ricontattiamo quando la rete si allarga.'),

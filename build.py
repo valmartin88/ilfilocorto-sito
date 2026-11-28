@@ -20,7 +20,7 @@ sys.path.insert(0, str(RADICE / 'strumenti'))
 import qr  # noqa: E402
 
 URL = 'https://ilfilocorto.it/'
-CSS_V = '9'
+CSS_V = '10'
 MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
 AUTORE = {'@type': 'Person', 'name': 'Valerio Semeraro', 'jobTitle': 'Food Specialist e consulente HACCP'}
 EDITORE = {'@type': 'Organization', 'name': 'Filo Corto', 'logo': {'@type': 'ImageObject', 'url': URL + 'icona.png'}}
@@ -153,7 +153,8 @@ def articolo(d, nome_sezione, url_sezione, nota, coda, occhiello='', menu=None, 
     corpo = ('<div class="wrap"><div class="capo"><p class="briciole"><a href="../">Filo Corto</a> / <a href="./">' + nome_sezione + '</a></p>'
              + (f'<p class="occhiello">{occhiello}</p>' if occhiello else '')
              + f'<h1>{d["h1"]}</h1><p class="grande">{d["intro"]}</p>'
-             f'<p class="piccolo">Di Valerio Semeraro, Food Specialist e consulente HACCP · Aggiornata a {mese(d["data"])}</p></div></div>'
+             f'<p class="piccolo">A cura di Valerio Semeraro, Food Specialist e consulente HACCP · Aggiornata a {mese(d["data"])}<br>'
+             'Scritta con l\'aiuto dell\'intelligenza artificiale, su fonti ufficiali. <a href="../come-funziona.html#ia">Come lavoriamo</a></p></div></div>'
              + (banda + '<section class="sez bianca">' if banda else '<div class="filo"></div><section class="sez bianca" style="border-top:0">')
              + f'<div class="wrap"><article class="prosa">{d["corpo"]}<div class="nota"><p><strong>Nota.</strong> {nota}</p></div></article></div></section>' + coda)
     (RADICE / 'site' / url_sezione).mkdir(parents=True, exist_ok=True)

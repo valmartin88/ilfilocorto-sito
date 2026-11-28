@@ -37,6 +37,9 @@ Il sito di Filo Corto cresce con tre lavori pianificati. Ognuno parte da zero: l
 - Check-up gratuito solo «per i primi produttori». Non è una certificazione.
 - Solo materie prime italiane: è una regola della rete, non una certificazione.
 - Mai la parola «verificato». Nessun numero di telefono. Nessun riferimento ad altri progetti.
+- L'intelligenza artificiale si nomina per quello che fa: scrive le guide su fonti ufficiali, prepara bozze, tiene in ordine
+  ricerche e resoconti. Le visite e le scelte sulla rete restano a una persona: mai scrivere che l'IA controlla, certifica o decide.
+- Si nomina solo la tecnologia che usiamo davvero (il QR dei produttori, l'IA per il lavoro d'ufficio).
 - Nessun nome di azienda privata nelle guide, nei territori e nelle pagine per le cucine.
 - Ogni norma, numero, obbligo e ogni DOP/IGP/DOC/PAT si scrive solo dopo averlo trovato su una fonte ufficiale o affidabile
   (Regione Lazio, ARSIAL, disciplinari, Gazzetta Ufficiale, ministeri, ISTAT). Se la conferma non c'è, non si scrive.
