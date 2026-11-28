@@ -36,7 +36,8 @@ Il sito di Filo Corto cresce con tre lavori pianificati. Ognuno parte da zero: l
 - Nessuna vendita promessa. Il margine di Filo Corto è «sempre dichiarato», senza percentuali.
 - Check-up gratuito solo «per i primi produttori». Non è una certificazione.
 - Solo materie prime italiane: è una regola della rete, non una certificazione.
-- Mai la parola «verificato». Nessun numero di telefono. Nessun riferimento ad altri progetti.
+- Mai la parola «verificato». Nessun numero di telefono. Nei testi nessun riferimento ad altri progetti
+  (l'unico legame è nel piede del sito: «Un progetto SicuroFood», deciso da Val il 28/11/2026).
 - L'intelligenza artificiale si nomina per quello che fa: scrive le guide su fonti ufficiali, prepara bozze, tiene in ordine
   ricerche e resoconti. Le visite e le scelte sulla rete restano a una persona: mai scrivere che l'IA controlla, certifica o decide.
 - Si nomina solo la tecnologia che usiamo davvero (il QR dei produttori, l'IA per il lavoro d'ufficio).

@@ -147,7 +147,7 @@ def pagina(percorso, titolo, desc, corpo, r='', menu=None, schemi=(), articolo=F
           f'<div><h3>Produttori</h3><a href="{r}produttori.html">Entra nella rete</a>{rete}<a href="{r}check-up.html">Il check-up</a><a href="{r}prova.html">Sei pronto? Fai la prova</a><a href="{r}guide/">Guide per vendere ai ristoranti</a><a href="{r}territori/">I territori del Lazio</a></div>',
           f'<div><h3>Per chi compra</h3><a href="{r}cucine.html">Ristoranti, hotel e aziende</a>{cucine}<a href="{r}come-funziona.html">Come funziona</a><a href="{r}riga-menu.html">La riga per il menu</a></div>',
           f'<div><h3>Filo Corto</h3><a href="{r}chi-siamo.html">Chi siamo</a><a href="{r}domande.html">Domande frequenti</a><a href="{r}enti.html">Per consorzi e territori</a><a href="mailto:info@ilfilocorto.it">info@ilfilocorto.it</a><a href="{r}privacy.html">Informativa privacy</a><a href="{r}crediti.html">Crediti delle immagini</a></div>', '</div>',
-          '<div class="fine"><span>Un progetto di Valerio Semeraro, Food Specialist e consulente HACCP – Roma</span><span>© 2026 Filo Corto</span></div>',
+          '<div class="fine"><span>Un progetto <a href="https://sicurofood.com" rel="noopener">SicuroFood</a></span><span>© 2026 Filo Corto</span></div>',
           '</div></footer>', SCRIPT + '</body>', '</html>', '']
     return '\n'.join(h)
 
